@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="uuid_id" version="2.0">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+        <dc:identifier opf:scheme="calibre" id="calibre_id">2</dc:identifier>
+        <dc:identifier opf:scheme="uuid" id="uuid_id">ecadf73f-544f-4e8b-a68e-08a328afd2cf</dc:identifier>
+        <dc:title>Licencia de Producción de Pares (Versión legible por humanas)</dc:title>
+        <dc:creator opf:file-as="Libre, En Defensa del Software" opf:role="aut">En Defensa del Software Libre</dc:creator>
+        <dc:contributor opf:file-as="calibre" opf:role="bkp">calibre (2.78.0) [https://calibre-ebook.com]</dc:contributor>
+        <dc:date>2017-01-09T17:36:04+00:00</dc:date>
+        <dc:publisher>EDSL</dc:publisher>
+        <dc:language>spa</dc:language>
+        <dc:subject>licencia</dc:subject>
+        <dc:subject>hacker</dc:subject>
+        <meta content="{&quot;En Defensa del Software Libre&quot;: &quot;&quot;}" name="calibre:author_link_map"/>
+        <meta content="2017-06-27T12:53:55.924827+00:00" name="calibre:timestamp"/>
+        <meta content="Licencia de Producción de Pares (Versión legible por humanas)" name="calibre:title_sort"/>
+    </metadata>
+    <guide>
+        <reference href="cover.jpg" title="Portada" type="cover"/>
+    </guide>
+</package>
