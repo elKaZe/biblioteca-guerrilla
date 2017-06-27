@@ -4,12 +4,14 @@
 #
 # Distributed under terms of the GPLv3+ license.
 
-"""ABC para proveer de varias db a la aplicacion"""
+"""Utilidades para la base de datos"""
 
+from importlib import import_module
 import abc
+import settings
 
 
-class Conector(metaclass=abc.ABCMeta):
+class ConectorABS(metaclass=abc.ABCMeta):
     """Metaclase para que extiendan los conectores"""
     @abc.abstractmethod
     def __init__():
@@ -60,3 +62,13 @@ class Conector(metaclass=abc.ABCMeta):
     def obtener_formatos(id_libro):
         """Obtiene todos los formatos de un libro"""
         pass
+
+
+def instanciar_conector():
+    """Inicializa e instancia el conector segun la configuracion"""
+
+    # Importamos el modulo
+    modulo = import_module(settings.CONECTOR)
+    # Instanciamos al conector
+    con = modulo.Conector(**settings.CONECTOR_OPCIONES)
+    return con

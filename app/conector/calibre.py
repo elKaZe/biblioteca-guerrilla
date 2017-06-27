@@ -7,16 +7,16 @@ import sys
 import os
 import sqlite3
 import logging
-from dbprovider import Conector
+from dbprovider import ConectorABS
 
 
-class Calibre_connector(Conector):
+class Conector(ConectorABS):
     """conector a la base de datos de calibre, da unos metodos para conseguir
     info de la db"""
 
-    def __init__(self, ruta):
+    def __init__(self, **kwargs):
         # Ruta a la db de calibre
-        self.db = ruta
+        self.db = kwargs.get('ruta', '')
         # Logging
         logging.basicConfig(level=logging.INFO)
         self.logger = logging.getLogger(__name__)
