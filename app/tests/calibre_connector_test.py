@@ -7,8 +7,8 @@
 import os
 import unittest
 
-from dbprovider import Conector
-from calibre_connector import Calibre_connector
+from dbprovider import ConectorABS
+from conector.calibre import Conector
 
 """
 Test para  el conector de calibre
@@ -19,7 +19,7 @@ Test para  el conector de calibre
 class CalibreConnectorTestCase(unittest.TestCase):
 
     def setUp(self):
-        self.con = Calibre_connector(
+        self.con = Conector(
             "tests/data/biblioteca_calibre/metadata.db")
         self.con.conectar()
 
@@ -29,17 +29,17 @@ class CalibreConnectorTestCase(unittest.TestCase):
     def test_instancia(self):
         """verifica que extienda y sea instancia de dbprovider"""
         self.assertTrue(
-            issubclass(Calibre_connector, Conector)
+            issubclass(Conector, ConectorABS)
         )
         self.assertTrue(
             isinstance(
-                Calibre_connector(
+                Conector(
                     "tests/data/biblioteca_calibre/metadata.db"),
-                Conector))
+                ConectorABS))
 
         # Verificamos el error al pasarle una ruta invalida
         with self.assertRaises(FileNotFoundError):
-            Calibre_connector("")
+            Conector("")
 
     def test_obtener_autores(self):
         """Testeamos la obtencion de autores"""

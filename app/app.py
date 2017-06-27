@@ -12,7 +12,7 @@
 from flask import Flask, render_template
 app = Flask('__name__')
 # Levantamos la config
-app.config.from_object(__name__)
+app.config.from_object("settings")
 
 
 @app.route('/')
