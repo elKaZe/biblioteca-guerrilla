@@ -8,13 +8,29 @@
 
 import abc
 
+
 class Conector(metaclass=abc.ABCMeta):
     """Metaclase para que extiendan los conectores"""
+    @abc.abstractmethod
+    def __init__():
+        """Inicializar"""
+        pass
+
+    @abc.abstractmethod
+    def conectar():
+        """Conectar y crear cursor"""
+        pass
+
+    @abc.abstractmethod
+    def desconectar():
+        """Desconectar"""
+        pass
 
     @abc.abstractmethod
     def obtener_todos():
         """Obtiene todos los libros"""
         pass
+
     @abc.abstractmethod
     def obtener_por_autor(autor):
         """Obtiene todos de un autor"""
@@ -38,4 +54,9 @@ class Conector(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def obtener_etiquetas():
         """Obtiene todas las etiquetas"""
+        pass
+
+    @abc.abstractmethod
+    def obtener_formatos(id_libro):
+        """Obtiene todos los formatos de un libro"""
         pass
