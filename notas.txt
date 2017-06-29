@@ -1,0 +1,22 @@
+notas.txt
+:Date: 2017-06-29 12:52
+
+sidebar.html
+    fitros_generales: listado de filtros como se van a resolver por path en la url
+footer.html
+    app_name: nombre de la aplicacion
+base.html
+    page.title: titulo de la pagina ( en navegador )
+
+listado.html
+    # listado de libros
+    titulo: titulo del listado ( ej: por autor <a>)
+
+libro_en_listado.html
+    # elemento libro que va dentro del listado
+    libro.titulo
+    libro.autor
+
+
+
+

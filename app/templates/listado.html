@@ -1,0 +1,46 @@
+{% from libro_en_listado import genera_item_libro %}
+<div class="columns">
+  {{ include "sidebar.html" }}
+  <div class="content column is-10">
+    <div class="title is-2">{{ titulo }}</div>
+    <div class="nav menu">
+      <div class="container">
+        <div class="nav-left">
+          <a class="nav-item is-tab is-active"><span class="icon-btn"><i class="fa fa-plus"></i></span></a>
+          <a class="nav-item is-tab">
+            <span class="icon-btn">
+              <i class="fa fa-print"></i>
+            </span>
+          </a>
+          <a class="nav-item is-tab">
+            <span class="icon-btn thin">
+              <i class="fa fa-lock"></i>
+            </span>
+          </a>
+          <a class="nav-item is-tab">
+            <span class="icon-btn">
+              <i class="fa fa-trash"></i>
+            </span>
+          </a>
+          <div class="nav-item is-tab">
+            <strong>2 items selected</strong>
+          </div>
+        </div>
+        <div class="nav-right is-hidden-mobile">
+          <a class="nav-item is-tab">Name</a>
+          <a class="nav-item is-tab">Size</a>
+          <a class="nav-item is-tab">Views</a>
+          <a class="nav-item"><span class=" button is-success">Uploaded</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="columns files">
+      <div class="column is-2">
+        <!--Genero los libros-->
+        {% for libro in libros %}
+          {{ genera_item_libro(libro.titulo, libro.autor, libro.tapa }}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>

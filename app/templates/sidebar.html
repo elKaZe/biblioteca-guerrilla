@@ -1,0 +1,9 @@
+<aside class="column is-2 aside hero is-fullheight is-hidden-mobile">
+  <div>
+    <div class="main">
+      <div class="title">Filtros</div>
+      {{ for filtro in filtros_generales }}
+      <a href="{{ get_url_for(filtro) }}" class="item"><span class="icon"><i class="fa fa-folder-o"></i></span><span class="name">{{ filtro }}</span></a>
+    </div>
+  </div>
+</aside>
