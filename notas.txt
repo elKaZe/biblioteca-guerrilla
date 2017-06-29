@@ -16,6 +16,7 @@ libro_en_listado.html
     # elemento libro que va dentro del listado
     libro.titulo
     libro.autor
+    libro.ruta_tapa
 
 
 
