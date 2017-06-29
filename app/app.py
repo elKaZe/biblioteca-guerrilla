@@ -12,12 +12,11 @@
 from flask import Flask, render_template
 app = Flask('__name__')
 # Levantamos la config
-app.config.from_object("settings")
+app.config.from_object("app.settings")
 
 
 @app.route('/')
-@app.route('/<name>')
-def hello(name=None):
+def index():
 	return render_template('hello.html', name=name)
 
 
