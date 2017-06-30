@@ -7,8 +7,8 @@
 import os
 import unittest
 
-from dbprovider import ConectorABS
-from conector.calibre import Conector
+from app.dbprovider import ConectorABS
+from app.conector.calibre import Conector
 
 """
 Test para  el conector de calibre
@@ -20,7 +20,7 @@ class CalibreConnectorTestCase(unittest.TestCase):
 
     def setUp(self):
         self.con = Conector(
-            "tests/data/biblioteca_calibre/metadata.db")
+            **{'ruta': "app/tests/data/biblioteca_calibre/metadata.db"})
         self.con.conectar()
 
     def tearDown(self):
@@ -34,12 +34,13 @@ class CalibreConnectorTestCase(unittest.TestCase):
         self.assertTrue(
             isinstance(
                 Conector(
-                    "tests/data/biblioteca_calibre/metadata.db"),
+                    **
+                    {'ruta': "app/tests/data/biblioteca_calibre/metadata.db"}),
                 ConectorABS))
 
         # Verificamos el error al pasarle una ruta invalida
         with self.assertRaises(FileNotFoundError):
-            Conector("")
+            Conector(**{'ruta': ""})
 
     def test_obtener_autores(self):
         """Testeamos la obtencion de autores"""
@@ -56,6 +57,14 @@ class CalibreConnectorTestCase(unittest.TestCase):
         # cantidad de atributos
         for l in libros:
             self.assertEqual(len(l), 4)
+
+    def test_obtener_por_autor(self):
+        """Traemos todos los libros por cada autor"""
+
+        autores = self.con.obtener_autores()
+        for a in autores:
+            libros = self.con.obtener_por_autor(a)
+            self.assertNotEqual(len(libros), 0)
 
     def test_obtener_etiquetas(self):
         """Testeamos la obtencion de etiquetas"""
@@ -80,7 +89,7 @@ class CalibreConnectorTestCase(unittest.TestCase):
         libros = self.con.obtener_todos()
 
         for l in libros:
-            formatos = self.con.obtener_formatos(l[0])
+            formatos = self.con.obtener_formatos(l.get("id"))
             self.assertNotEqual(len(formatos), 0)
 
         # Sin formatos
