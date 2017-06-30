@@ -8,7 +8,7 @@
 
 from importlib import import_module
 import abc
-import settings
+import app.settings as settings
 
 
 class ConectorABS(metaclass=abc.ABCMeta):

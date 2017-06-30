@@ -7,7 +7,7 @@ import sys
 import os
 import sqlite3
 import logging
-from dbprovider import ConectorABS
+from app.dbprovider import ConectorABS
 
 
 class Conector(ConectorABS):
@@ -39,23 +39,38 @@ class Conector(ConectorABS):
     def obtener_todos(self):
         # Obtenemos los metadatos de cada libro
         self.cursor.execute("""
-        select id, title, author_sort, pubdate
+        select id, title, author_sort, pubdate, path
         from books
         order by title;
         """)
         # retornamos la lista de autores
         ret = []
         for registro in self.cursor.fetchall():
-            ret.append(registro)
+            ret.append({"id": registro[0],
+                        "titulo": registro[1],
+                        "autor": registro[2],
+                        "fecha_publicacion": registro[3],
+                        "ruta": registro[4],
+                        })
         return ret
 
     def obtener_por_autor(self, autor):
         # Obtenemos los metadatos de cada libro
         self.cursor.execute("""
-        select b.id, b.title, b.author_sort, b.pubdate
+        select b.id, b.title, b.author_sort, b.pubdate, b.path
         from books b,  authors a
         where b.author_sort = a.sort and a.name = ?
         order by b.title""", (autor,))
+
+        ret = []
+        for registro in self.cursor.fetchall():
+            ret.append({"id": registro[0],
+                        "titulo": registro[1],
+                        "autor": registro[2],
+                        "fecha_publicacion": registro[3],
+                        "ruta": registro[4],
+                        })
+        return ret
 
     def obtener_autores(self):
         self.cursor.execute("""
@@ -73,7 +88,7 @@ class Conector(ConectorABS):
 
     def obtener_por_etiqueta(self, etiqueta):
         self.cursor.execute("""
-        select b.id, b.title, b.author_sort, b.pubdate
+        select b.id, b.title, b.author_sort, b.pubdate, b.path
         from books b, tags t, books_tags_link btl
         where btl.tag = b.id and t.name = ?
         order by b.title""", (etiqueta,))

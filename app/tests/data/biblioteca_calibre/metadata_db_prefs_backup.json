@@ -4,514 +4,514 @@
   "field_metadata": {
     "rating": {
       "is_category": true, 
+      "is_multiple": {}, 
+      "kind": "field", 
+      "is_custom": false, 
       "is_csp": false, 
+      "column": "rating", 
+      "rec_index": 5, 
       "search_terms": [
         "rating"
       ], 
-      "is_multiple": {}, 
-      "table": "ratings", 
-      "is_editable": true, 
-      "kind": "field", 
-      "is_custom": false, 
-      "name": "Valoraci\u00f3n", 
-      "datatype": "rating", 
-      "rec_index": 5, 
       "link_column": "rating", 
       "label": "rating", 
-      "column": "rating", 
+      "is_editable": true, 
+      "datatype": "rating", 
       "category_sort": "rating", 
-      "display": {}
-    }, 
-    "author_sort": {
-      "is_category": false, 
-      "is_csp": false, 
-      "search_terms": [
-        "author_sort"
-      ], 
-      "is_multiple": {}, 
-      "table": null, 
-      "is_editable": true, 
-      "kind": "field", 
-      "is_custom": false, 
-      "name": "Orden de autor", 
-      "datatype": "text", 
-      "rec_index": 12, 
-      "label": "author_sort", 
-      "column": null, 
-      "display": {}
-    }, 
-    "pubdate": {
-      "is_category": false, 
-      "is_csp": false, 
-      "search_terms": [
-        "pubdate"
-      ], 
-      "is_multiple": {}, 
-      "table": null, 
-      "is_editable": true, 
-      "kind": "field", 
-      "is_custom": false, 
-      "name": "Publicado", 
-      "datatype": "datetime", 
-      "rec_index": 15, 
-      "label": "pubdate", 
-      "column": null, 
-      "display": {
-        "date_format": "MMM yyyy"
-      }
-    }, 
-    "series": {
-      "is_category": true, 
-      "is_csp": false, 
-      "search_terms": [
-        "series"
-      ], 
-      "is_multiple": {}, 
-      "table": "series", 
-      "is_editable": true, 
-      "kind": "field", 
-      "is_custom": false, 
-      "name": "Serie", 
-      "datatype": "series", 
-      "rec_index": 8, 
-      "link_column": "series", 
-      "label": "series", 
-      "column": "name", 
-      "category_sort": "(title_sort(name))", 
-      "display": {}
-    }, 
-    "marked": {
-      "is_category": false, 
-      "is_csp": false, 
-      "search_terms": [
-        "marked"
-      ], 
-      "is_multiple": {}, 
-      "table": null, 
-      "is_editable": true, 
-      "kind": "field", 
-      "is_custom": false, 
-      "name": null, 
-      "datatype": "text", 
-      "rec_index": 23, 
-      "label": "marked", 
-      "column": null, 
-      "display": {}
-    }, 
-    "path": {
-      "is_category": false, 
-      "is_csp": false, 
-      "search_terms": [], 
-      "is_multiple": {}, 
-      "table": null, 
-      "is_editable": true, 
-      "kind": "field", 
-      "is_custom": false, 
-      "name": "Ruta", 
-      "datatype": "text", 
-      "rec_index": 14, 
-      "label": "path", 
-      "column": null, 
-      "display": {}
-    }, 
-    "au_map": {
-      "is_category": false, 
-      "is_csp": false, 
-      "search_terms": [], 
-      "is_multiple": {
-        "cache_to_list": ",", 
-        "list_to_ui": null, 
-        "ui_to_list": null
-      }, 
-      "table": null, 
-      "is_editable": true, 
-      "kind": "field", 
-      "is_custom": false, 
-      "name": null, 
-      "datatype": "text", 
-      "rec_index": 18, 
-      "label": "au_map", 
-      "column": null, 
-      "display": {}
-    }, 
-    "id": {
-      "is_category": false, 
-      "is_csp": false, 
-      "search_terms": [
-        "id"
-      ], 
-      "is_multiple": {}, 
-      "table": null, 
-      "is_editable": true, 
-      "kind": "field", 
-      "is_custom": false, 
-      "name": null, 
-      "datatype": "int", 
-      "rec_index": 0, 
-      "label": "id", 
-      "column": null, 
-      "display": {}
-    }, 
-    "size": {
-      "is_category": false, 
-      "is_csp": false, 
-      "search_terms": [
-        "size"
-      ], 
-      "is_multiple": {}, 
-      "table": null, 
-      "is_editable": true, 
-      "kind": "field", 
-      "is_custom": false, 
-      "name": "Tama\u00f1o", 
-      "datatype": "float", 
-      "rec_index": 4, 
-      "label": "size", 
-      "column": null, 
-      "display": {}
-    }, 
-    "uuid": {
-      "is_category": false, 
-      "is_csp": false, 
-      "search_terms": [
-        "uuid"
-      ], 
-      "is_multiple": {}, 
-      "table": null, 
-      "is_editable": true, 
-      "kind": "field", 
-      "is_custom": false, 
-      "name": null, 
-      "datatype": "text", 
-      "rec_index": 16, 
-      "label": "uuid", 
-      "column": null, 
-      "display": {}
-    }, 
-    "title": {
-      "is_category": false, 
-      "is_csp": false, 
-      "search_terms": [
-        "title"
-      ], 
-      "is_multiple": {}, 
-      "table": null, 
-      "is_editable": true, 
-      "kind": "field", 
-      "is_custom": false, 
-      "name": "T\u00edtulo", 
-      "datatype": "text", 
-      "rec_index": 1, 
-      "label": "title", 
-      "column": null, 
-      "display": {}
-    }, 
-    "series_sort": {
-      "is_category": false, 
-      "is_csp": false, 
-      "search_terms": [
-        "series_sort"
-      ], 
-      "is_multiple": {}, 
-      "table": null, 
-      "is_editable": true, 
-      "kind": "field", 
-      "is_custom": false, 
-      "name": "Orden de serie", 
-      "datatype": "text", 
-      "rec_index": 24, 
-      "label": "series_sort", 
-      "column": null, 
-      "display": {}
-    }, 
-    "comments": {
-      "is_category": false, 
-      "is_csp": false, 
-      "search_terms": [
-        "comments", 
-        "comment"
-      ], 
-      "is_multiple": {}, 
-      "table": null, 
-      "is_editable": true, 
-      "kind": "field", 
-      "is_custom": false, 
-      "name": "Comentarios", 
-      "datatype": "text", 
-      "rec_index": 7, 
-      "label": "comments", 
-      "column": null, 
-      "display": {}
-    }, 
-    "languages": {
-      "is_category": true, 
-      "is_csp": false, 
-      "search_terms": [
-        "languages", 
-        "language"
-      ], 
-      "is_multiple": {
-        "cache_to_list": ",", 
-        "list_to_ui": ", ", 
-        "ui_to_list": ","
-      }, 
-      "table": "languages", 
-      "is_editable": true, 
-      "kind": "field", 
-      "is_custom": false, 
-      "name": "Idiomas", 
-      "datatype": "text", 
-      "rec_index": 21, 
-      "link_column": "lang_code", 
-      "label": "languages", 
-      "column": "lang_code", 
-      "category_sort": "lang_code", 
-      "display": {}
-    }, 
-    "sort": {
-      "is_category": false, 
-      "is_csp": false, 
-      "search_terms": [
-        "title_sort"
-      ], 
-      "is_multiple": {}, 
-      "table": null, 
-      "is_editable": true, 
-      "kind": "field", 
-      "is_custom": false, 
-      "name": "Orden de t\u00edtulo", 
-      "datatype": "text", 
-      "rec_index": 11, 
-      "label": "sort", 
-      "column": null, 
-      "display": {}
-    }, 
-    "tags": {
-      "is_category": true, 
-      "is_csp": false, 
-      "search_terms": [
-        "tags", 
-        "tag"
-      ], 
-      "is_multiple": {
-        "cache_to_list": ",", 
-        "list_to_ui": ", ", 
-        "ui_to_list": ","
-      }, 
-      "table": "tags", 
-      "is_editable": true, 
-      "kind": "field", 
-      "is_custom": false, 
-      "name": "Etiquetas", 
-      "datatype": "text", 
-      "rec_index": 6, 
-      "link_column": "tag", 
-      "label": "tags", 
-      "column": "name", 
-      "category_sort": "name", 
-      "display": {}
-    }, 
-    "timestamp": {
-      "is_category": false, 
-      "is_csp": false, 
-      "search_terms": [
-        "date"
-      ], 
-      "is_multiple": {}, 
-      "table": null, 
-      "is_editable": true, 
-      "kind": "field", 
-      "is_custom": false, 
-      "name": "Fecha", 
-      "datatype": "datetime", 
-      "rec_index": 3, 
-      "label": "timestamp", 
-      "column": null, 
-      "display": {
-        "date_format": "dd MMM yyyy"
-      }
-    }, 
-    "last_modified": {
-      "is_category": false, 
-      "is_csp": false, 
-      "search_terms": [
-        "last_modified"
-      ], 
-      "is_multiple": {}, 
-      "table": null, 
-      "is_editable": true, 
-      "kind": "field", 
-      "is_custom": false, 
-      "name": "Modificado", 
-      "datatype": "datetime", 
-      "rec_index": 19, 
-      "label": "last_modified", 
-      "column": null, 
-      "display": {
-        "date_format": "dd MMM yyyy"
-      }
-    }, 
-    "authors": {
-      "is_category": true, 
-      "is_csp": false, 
-      "search_terms": [
-        "authors", 
-        "author"
-      ], 
-      "is_multiple": {
-        "cache_to_list": ",", 
-        "list_to_ui": " & ", 
-        "ui_to_list": "&"
-      }, 
-      "table": "authors", 
-      "is_editable": true, 
-      "kind": "field", 
-      "is_custom": false, 
-      "name": "Autores", 
-      "datatype": "text", 
-      "rec_index": 2, 
-      "link_column": "author", 
-      "label": "authors", 
-      "column": "name", 
-      "category_sort": "sort", 
-      "display": {}
-    }, 
-    "news": {
-      "is_category": true, 
-      "is_csp": false, 
-      "search_terms": [], 
-      "is_multiple": {}, 
-      "table": "news", 
-      "is_editable": true, 
-      "kind": "category", 
-      "is_custom": false, 
-      "name": "Noticias", 
-      "datatype": null, 
-      "label": "news", 
-      "column": "name", 
-      "category_sort": "name", 
-      "display": {}
-    }, 
-    "publisher": {
-      "is_category": true, 
-      "is_csp": false, 
-      "search_terms": [
-        "publisher"
-      ], 
-      "is_multiple": {}, 
-      "table": "publishers", 
-      "is_editable": true, 
-      "kind": "field", 
-      "is_custom": false, 
-      "name": "Editorial", 
-      "datatype": "text", 
-      "rec_index": 9, 
-      "link_column": "publisher", 
-      "label": "publisher", 
-      "column": "name", 
-      "category_sort": "name", 
-      "display": {}
-    }, 
-    "series_index": {
-      "is_category": false, 
-      "is_csp": false, 
-      "search_terms": [
-        "series_index"
-      ], 
-      "is_multiple": {}, 
-      "table": null, 
-      "is_editable": true, 
-      "kind": "field", 
-      "is_custom": false, 
-      "name": null, 
-      "datatype": "float", 
-      "rec_index": 10, 
-      "label": "series_index", 
-      "column": null, 
-      "display": {}
+      "table": "ratings", 
+      "display": {}, 
+      "name": "Valoraci\u00f3n"
     }, 
     "identifiers": {
       "is_category": true, 
+      "is_multiple": {
+        "cache_to_list": ",", 
+        "ui_to_list": ",", 
+        "list_to_ui": ", "
+      }, 
+      "kind": "field", 
+      "is_custom": false, 
       "is_csp": true, 
+      "column": null, 
+      "rec_index": 20, 
       "search_terms": [
         "identifiers", 
         "identifier", 
         "isbn"
       ], 
-      "is_multiple": {
-        "cache_to_list": ",", 
-        "list_to_ui": ", ", 
-        "ui_to_list": ","
-      }, 
-      "table": null, 
+      "label": "identifiers", 
       "is_editable": true, 
+      "datatype": "text", 
+      "table": null, 
+      "display": {}, 
+      "name": "Identificadores"
+    }, 
+    "pubdate": {
+      "is_category": false, 
+      "is_multiple": {}, 
       "kind": "field", 
       "is_custom": false, 
-      "name": "Identificadores", 
-      "datatype": "text", 
-      "rec_index": 20, 
-      "label": "identifiers", 
+      "is_csp": false, 
       "column": null, 
-      "display": {}
+      "rec_index": 15, 
+      "search_terms": [
+        "pubdate"
+      ], 
+      "label": "pubdate", 
+      "is_editable": true, 
+      "datatype": "datetime", 
+      "table": null, 
+      "display": {
+        "date_format": "MMM yyyy"
+      }, 
+      "name": "Publicado"
+    }, 
+    "series": {
+      "is_category": true, 
+      "is_multiple": {}, 
+      "kind": "field", 
+      "is_custom": false, 
+      "is_csp": false, 
+      "column": "name", 
+      "rec_index": 8, 
+      "search_terms": [
+        "series"
+      ], 
+      "link_column": "series", 
+      "label": "series", 
+      "is_editable": true, 
+      "datatype": "series", 
+      "category_sort": "(title_sort(name))", 
+      "table": "series", 
+      "display": {}, 
+      "name": "Serie"
+    }, 
+    "marked": {
+      "is_category": false, 
+      "is_multiple": {}, 
+      "kind": "field", 
+      "is_custom": false, 
+      "is_csp": false, 
+      "column": null, 
+      "rec_index": 23, 
+      "search_terms": [
+        "marked"
+      ], 
+      "label": "marked", 
+      "is_editable": true, 
+      "datatype": "text", 
+      "table": null, 
+      "display": {}, 
+      "name": null
+    }, 
+    "path": {
+      "is_category": false, 
+      "is_multiple": {}, 
+      "kind": "field", 
+      "is_custom": false, 
+      "is_csp": false, 
+      "column": null, 
+      "rec_index": 14, 
+      "search_terms": [], 
+      "label": "path", 
+      "is_editable": true, 
+      "datatype": "text", 
+      "table": null, 
+      "display": {}, 
+      "name": "Ruta"
+    }, 
+    "au_map": {
+      "is_category": false, 
+      "is_multiple": {
+        "cache_to_list": ",", 
+        "ui_to_list": null, 
+        "list_to_ui": null
+      }, 
+      "kind": "field", 
+      "is_custom": false, 
+      "is_csp": false, 
+      "column": null, 
+      "rec_index": 18, 
+      "search_terms": [], 
+      "label": "au_map", 
+      "is_editable": true, 
+      "datatype": "text", 
+      "table": null, 
+      "display": {}, 
+      "name": null
+    }, 
+    "id": {
+      "is_category": false, 
+      "is_multiple": {}, 
+      "kind": "field", 
+      "is_custom": false, 
+      "is_csp": false, 
+      "column": null, 
+      "rec_index": 0, 
+      "search_terms": [
+        "id"
+      ], 
+      "label": "id", 
+      "is_editable": true, 
+      "datatype": "int", 
+      "table": null, 
+      "display": {}, 
+      "name": null
+    }, 
+    "size": {
+      "is_category": false, 
+      "is_multiple": {}, 
+      "kind": "field", 
+      "is_custom": false, 
+      "is_csp": false, 
+      "column": null, 
+      "rec_index": 4, 
+      "search_terms": [
+        "size"
+      ], 
+      "label": "size", 
+      "is_editable": true, 
+      "datatype": "float", 
+      "table": null, 
+      "display": {}, 
+      "name": "Tama\u00f1o"
+    }, 
+    "uuid": {
+      "is_category": false, 
+      "is_multiple": {}, 
+      "kind": "field", 
+      "is_custom": false, 
+      "is_csp": false, 
+      "column": null, 
+      "rec_index": 16, 
+      "search_terms": [
+        "uuid"
+      ], 
+      "label": "uuid", 
+      "is_editable": true, 
+      "datatype": "text", 
+      "table": null, 
+      "display": {}, 
+      "name": null
+    }, 
+    "title": {
+      "is_category": false, 
+      "is_multiple": {}, 
+      "kind": "field", 
+      "is_custom": false, 
+      "is_csp": false, 
+      "column": null, 
+      "rec_index": 1, 
+      "search_terms": [
+        "title"
+      ], 
+      "label": "title", 
+      "is_editable": true, 
+      "datatype": "text", 
+      "table": null, 
+      "display": {}, 
+      "name": "T\u00edtulo"
+    }, 
+    "series_sort": {
+      "is_category": false, 
+      "is_multiple": {}, 
+      "kind": "field", 
+      "is_custom": false, 
+      "is_csp": false, 
+      "column": null, 
+      "rec_index": 24, 
+      "search_terms": [
+        "series_sort"
+      ], 
+      "label": "series_sort", 
+      "is_editable": true, 
+      "datatype": "text", 
+      "table": null, 
+      "display": {}, 
+      "name": "Orden de serie"
+    }, 
+    "comments": {
+      "is_category": false, 
+      "is_multiple": {}, 
+      "kind": "field", 
+      "is_custom": false, 
+      "is_csp": false, 
+      "column": null, 
+      "rec_index": 7, 
+      "search_terms": [
+        "comments", 
+        "comment"
+      ], 
+      "label": "comments", 
+      "is_editable": true, 
+      "datatype": "text", 
+      "table": null, 
+      "display": {}, 
+      "name": "Comentarios"
+    }, 
+    "languages": {
+      "is_category": true, 
+      "is_multiple": {
+        "cache_to_list": ",", 
+        "ui_to_list": ",", 
+        "list_to_ui": ", "
+      }, 
+      "kind": "field", 
+      "is_custom": false, 
+      "is_csp": false, 
+      "column": "lang_code", 
+      "rec_index": 21, 
+      "search_terms": [
+        "languages", 
+        "language"
+      ], 
+      "link_column": "lang_code", 
+      "label": "languages", 
+      "is_editable": true, 
+      "datatype": "text", 
+      "category_sort": "lang_code", 
+      "table": "languages", 
+      "display": {}, 
+      "name": "Idiomas"
+    }, 
+    "sort": {
+      "is_category": false, 
+      "is_multiple": {}, 
+      "kind": "field", 
+      "is_custom": false, 
+      "is_csp": false, 
+      "column": null, 
+      "rec_index": 11, 
+      "search_terms": [
+        "title_sort"
+      ], 
+      "label": "sort", 
+      "is_editable": true, 
+      "datatype": "text", 
+      "table": null, 
+      "display": {}, 
+      "name": "Orden de t\u00edtulo"
+    }, 
+    "tags": {
+      "is_category": true, 
+      "is_multiple": {
+        "cache_to_list": ",", 
+        "ui_to_list": ",", 
+        "list_to_ui": ", "
+      }, 
+      "kind": "field", 
+      "is_custom": false, 
+      "is_csp": false, 
+      "column": "name", 
+      "rec_index": 6, 
+      "search_terms": [
+        "tags", 
+        "tag"
+      ], 
+      "link_column": "tag", 
+      "label": "tags", 
+      "is_editable": true, 
+      "datatype": "text", 
+      "category_sort": "name", 
+      "table": "tags", 
+      "display": {}, 
+      "name": "Etiquetas"
+    }, 
+    "timestamp": {
+      "is_category": false, 
+      "is_multiple": {}, 
+      "kind": "field", 
+      "is_custom": false, 
+      "is_csp": false, 
+      "column": null, 
+      "rec_index": 3, 
+      "search_terms": [
+        "date"
+      ], 
+      "label": "timestamp", 
+      "is_editable": true, 
+      "datatype": "datetime", 
+      "table": null, 
+      "display": {
+        "date_format": "dd MMM yyyy"
+      }, 
+      "name": "Fecha"
+    }, 
+    "last_modified": {
+      "is_category": false, 
+      "is_multiple": {}, 
+      "kind": "field", 
+      "is_custom": false, 
+      "is_csp": false, 
+      "column": null, 
+      "rec_index": 19, 
+      "search_terms": [
+        "last_modified"
+      ], 
+      "label": "last_modified", 
+      "is_editable": true, 
+      "datatype": "datetime", 
+      "table": null, 
+      "display": {
+        "date_format": "dd MMM yyyy"
+      }, 
+      "name": "Modificado"
+    }, 
+    "authors": {
+      "is_category": true, 
+      "is_multiple": {
+        "cache_to_list": ",", 
+        "ui_to_list": "&", 
+        "list_to_ui": " & "
+      }, 
+      "kind": "field", 
+      "is_custom": false, 
+      "is_csp": false, 
+      "column": "name", 
+      "rec_index": 2, 
+      "search_terms": [
+        "authors", 
+        "author"
+      ], 
+      "link_column": "author", 
+      "label": "authors", 
+      "is_editable": true, 
+      "datatype": "text", 
+      "category_sort": "sort", 
+      "table": "authors", 
+      "display": {}, 
+      "name": "Autores"
+    }, 
+    "news": {
+      "is_category": true, 
+      "is_multiple": {}, 
+      "kind": "category", 
+      "is_custom": false, 
+      "is_csp": false, 
+      "column": "name", 
+      "search_terms": [], 
+      "label": "news", 
+      "is_editable": true, 
+      "datatype": null, 
+      "category_sort": "name", 
+      "table": "news", 
+      "display": {}, 
+      "name": "Noticias"
+    }, 
+    "publisher": {
+      "is_category": true, 
+      "is_multiple": {}, 
+      "kind": "field", 
+      "is_custom": false, 
+      "is_csp": false, 
+      "column": "name", 
+      "rec_index": 9, 
+      "search_terms": [
+        "publisher"
+      ], 
+      "link_column": "publisher", 
+      "label": "publisher", 
+      "is_editable": true, 
+      "datatype": "text", 
+      "category_sort": "name", 
+      "table": "publishers", 
+      "display": {}, 
+      "name": "Editorial"
+    }, 
+    "series_index": {
+      "is_category": false, 
+      "is_multiple": {}, 
+      "kind": "field", 
+      "is_custom": false, 
+      "is_csp": false, 
+      "column": null, 
+      "rec_index": 10, 
+      "search_terms": [
+        "series_index"
+      ], 
+      "label": "series_index", 
+      "is_editable": true, 
+      "datatype": "float", 
+      "table": null, 
+      "display": {}, 
+      "name": null
+    }, 
+    "author_sort": {
+      "is_category": false, 
+      "is_multiple": {}, 
+      "kind": "field", 
+      "is_custom": false, 
+      "is_csp": false, 
+      "column": null, 
+      "rec_index": 12, 
+      "search_terms": [
+        "author_sort"
+      ], 
+      "label": "author_sort", 
+      "is_editable": true, 
+      "datatype": "text", 
+      "table": null, 
+      "display": {}, 
+      "name": "Orden de autor"
     }, 
     "cover": {
       "is_category": false, 
+      "is_multiple": {}, 
+      "kind": "field", 
+      "is_custom": false, 
       "is_csp": false, 
+      "column": null, 
+      "rec_index": 17, 
       "search_terms": [
         "cover"
       ], 
-      "is_multiple": {}, 
-      "table": null, 
-      "is_editable": true, 
-      "kind": "field", 
-      "is_custom": false, 
-      "name": "Portada", 
-      "datatype": "int", 
-      "rec_index": 17, 
       "label": "cover", 
-      "column": null, 
-      "display": {}
+      "is_editable": true, 
+      "datatype": "int", 
+      "table": null, 
+      "display": {}, 
+      "name": "Portada"
     }, 
     "ondevice": {
       "is_category": false, 
+      "is_multiple": {}, 
+      "kind": "field", 
+      "is_custom": false, 
       "is_csp": false, 
+      "column": null, 
+      "rec_index": 22, 
       "search_terms": [
         "ondevice"
       ], 
-      "is_multiple": {}, 
-      "table": null, 
-      "is_editable": true, 
-      "kind": "field", 
-      "is_custom": false, 
-      "name": "En el dispositivo", 
-      "datatype": "text", 
-      "rec_index": 22, 
       "label": "ondevice", 
-      "column": null, 
-      "display": {}
+      "is_editable": true, 
+      "datatype": "text", 
+      "table": null, 
+      "display": {}, 
+      "name": "En el dispositivo"
     }, 
     "formats": {
       "is_category": true, 
+      "is_multiple": {
+        "cache_to_list": ",", 
+        "ui_to_list": ",", 
+        "list_to_ui": ", "
+      }, 
+      "kind": "field", 
+      "is_custom": false, 
       "is_csp": false, 
+      "column": null, 
+      "rec_index": 13, 
       "search_terms": [
         "formats", 
         "format"
       ], 
-      "is_multiple": {
-        "cache_to_list": ",", 
-        "list_to_ui": ", ", 
-        "ui_to_list": ","
-      }, 
-      "table": null, 
-      "is_editable": true, 
-      "kind": "field", 
-      "is_custom": false, 
-      "name": "Formatos", 
-      "datatype": "text", 
-      "rec_index": 13, 
       "label": "formats", 
-      "column": null, 
-      "display": {}
+      "is_editable": true, 
+      "datatype": "text", 
+      "table": null, 
+      "display": {}, 
+      "name": "Formatos"
     }
   }, 
   "grouped_search_terms": {}, 
@@ -523,31 +523,31 @@
       "size": "center"
     }, 
     "column_sizes": {
-      "rating": 103, 
-      "pubdate": 97, 
-      "tags": 106, 
-      "series": 63, 
-      "timestamp": 81, 
-      "title": 196, 
       "publisher": 88, 
+      "pubdate": 97, 
+      "rating": 103, 
+      "series": 63, 
+      "tags": 106, 
       "languages": 0, 
       "last_modified": 0, 
+      "timestamp": 81, 
       "authors": 95, 
+      "title": 196, 
       "size": 194
     }, 
     "languages_injected": true, 
     "column_positions": {
-      "rating": 5, 
-      "pubdate": 9, 
-      "title": 1, 
-      "series": 7, 
-      "timestamp": 3, 
-      "tags": 6, 
       "publisher": 8, 
+      "pubdate": 9, 
+      "rating": 5, 
+      "series": 7, 
+      "tags": 6, 
       "languages": 11, 
       "last_modified": 10, 
       "ondevice": 0, 
       "authors": 2, 
+      "title": 1, 
+      "timestamp": 3, 
       "size": 4
     }, 
     "sort_history": [
