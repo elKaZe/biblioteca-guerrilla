@@ -2,7 +2,7 @@
 {% block listado %}
 
 {% macro genera_item_libro(titulo, autor, ruta_cover) %}
-  <a class="file">
+<a class="file" href={{ url_for('vista_libro_especificado', nombre_libro=titulo ) }} >
     <div class="image is-3by2">
       <img src="/tapas/{{ ruta_cover }}">
     </div>

@@ -18,7 +18,6 @@ def agregar_ruta_cover(libros, conector):
     """Agrega la ruta de la tapa del libro a la lista de libros, el libro es un
     diccionario"""
 
-    nuevo_libros = []
     nombre_fichero_tapa = "cover.jpg"
 
     for libro in libros:
@@ -27,13 +26,39 @@ def agregar_ruta_cover(libros, conector):
                                   nombre_fichero_tapa)
         libro["tapa"] = ruta_cover
 
-        nuevo_libros.append(libro)
+    return libros
 
-    return nuevo_libros
+
+def simplificar_fecha(libros):
+    """Simplifica la fecha
+    ej: 0101-01-01 00:00:00+00:00
+        0101
+        """
+
+    for libro in libros:
+        # Obtengo el año de publicacion, que son los primeros 4 caracteres
+        libro["fecha_publicacion"] = libro.get("fecha_publicacion", "")[:4]
+
+    return libros
+
+
+def agregar_etiquetas(libros, conector):
+    """Añade las etiquetas de un libro"""
+
+    nuevo_libros = []
+    nombre_fichero_tapa = "cover.jpg"
+
+    for libro in libros:
+
+        libro["etiquetas"] = \
+            conector.obtener_etiquetas_de_libro(libro.get("titulo"), '')
+
+    return libros
 
 
 def normalizar_libros(libros, conector):
     """Se encarga de normalizar los atributos de los libros"""
 
+    libros = simplificar_fecha(libros)
     libros_normalizado = agregar_ruta_cover(libros, conector)
     return libros_normalizado

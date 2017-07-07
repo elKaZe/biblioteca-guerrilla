@@ -514,6 +514,7 @@
       "name": "Formatos"
     }
   }, 
+  "news_to_be_synced": [], 
   "grouped_search_terms": {}, 
   "tag_browser_hidden_categories": [], 
   "library_view books view state": {
@@ -523,34 +524,46 @@
       "size": "center"
     }, 
     "column_sizes": {
-      "publisher": 88, 
-      "pubdate": 97, 
       "rating": 103, 
-      "series": 63, 
+      "pubdate": 97, 
       "tags": 106, 
+      "series": 63, 
+      "timestamp": 81, 
+      "title": 196, 
+      "publisher": 88, 
       "languages": 0, 
       "last_modified": 0, 
-      "timestamp": 81, 
       "authors": 95, 
-      "title": 196, 
       "size": 194
     }, 
     "languages_injected": true, 
     "column_positions": {
-      "publisher": 8, 
-      "pubdate": 9, 
       "rating": 5, 
+      "pubdate": 9, 
+      "title": 1, 
       "series": 7, 
+      "timestamp": 3, 
       "tags": 6, 
+      "publisher": 8, 
       "languages": 11, 
       "last_modified": 10, 
       "ondevice": 0, 
       "authors": 2, 
-      "title": 1, 
-      "timestamp": 3, 
       "size": 4
     }, 
     "sort_history": [
+      [
+        "timestamp", 
+        false
+      ], 
+      [
+        "ondevice", 
+        false
+      ], 
+      [
+        "title", 
+        true
+      ], 
       [
         "timestamp", 
         false
