@@ -1,0 +1,62 @@
+
+{% extends "central.html" %}
+{% block content%}
+
+
+<div class="columns">
+  {% include "sidebar.html" %}
+  <div class="content column is-10">
+    <div class="title is-2">{{ titulo }}</div>
+    <div class="nav menu">
+      <div class="container">
+        <div class="nav-left">
+          <a class="nav-item is-tab is-active"><span class="icon-btn"><i class="fa fa-plus"></i></span></a>
+          <a class="nav-item is-tab">
+            <span class="icon-btn">
+              <i class="fa fa-print"></i>
+            </span>
+          </a>
+          <a class="nav-item is-tab">
+            <span class="icon-btn thin">
+              <i class="fa fa-lock"></i>
+            </span>
+          </a>
+          <a class="nav-item is-tab">
+            <span class="icon-btn">
+              <i class="fa fa-trash"></i>
+            </span>
+          </a>
+          <div class="nav-item is-tab">
+            <strong>ALGO</strong>
+          </div>
+        </div>
+        <div class="nav-right is-hidden-mobile">
+          <a class="nav-item is-tab">Algo</a>
+          <a class="nav-item"><span class=" button is-success">algO</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column is-2">
+        <div class="image is-420x640">
+          <img src="/tapas/{{ libro.tapa }}">
+        </div>
+      </div>
+
+      <div class="column">
+        <ul>
+          <li><strong> Título: </strong>{{ libro.titulo }}</li>
+          <li><strong> Autor: </strong>{{ libro.autor}}</li>
+          <li><strong> Año de publicación: </strong>{{ libro.fecha_publicacion}}</li>
+          {% if libro.sinopsis %}
+          <li><strong> Sinopsis: </strong></li>
+          <li>{{ libro.sinopsis}}</li>
+          {% endif %}
+          <ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
