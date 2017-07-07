@@ -41,6 +41,18 @@ def filtrar_por_autor(autor):
     return libros
 
 
+def filtrar_por_nombre(nombre_libro):
+    """Filtra por el nombre del libro"""
+    conector = instanciar_conector()
+    conector.conectar()
+    # obtenemos los libros sin procesar
+    libros = conector.obtener_por_nombre(nombre_libro)
+    #Normalizamos la lista de libros
+    libros = normalizar_libros(libros, conector)
+    conector.desconectar()
+    return libros
+
+
 @app.route('/')
 def index():
 	return render_template('hello.html', name=name)
@@ -54,6 +66,17 @@ def vista_autor_especificado(nombre_autor):
     return render_template("listado.html",
                            libros=libros,
                            titulo=nombre_autor,
+                           )
+
+
+@app.route('/libro/<string:nombre_libro>/')
+def vista_libro_especificado(nombre_libro):
+    """Muestra el libro pedido"""
+    libros = filtrar_por_nombre(nombre_libro)
+
+    return render_template("libro.html",
+                           libro=libros[0],
+                           titulo=nombre_libro,
                            )
 
 
