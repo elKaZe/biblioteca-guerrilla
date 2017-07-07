@@ -44,6 +44,11 @@ class ConectorABS(metaclass=abc.ABCMeta):
         pass
 
     @abc.abstractmethod
+    def obtener_por_nombre(nombre_libro):
+        """Obtiene un libro por su nombre"""
+        pass
+
+    @abc.abstractmethod
     def obtener_por_serie(serie):
         """Obtiene todos de una serie"""
         pass
@@ -51,6 +56,11 @@ class ConectorABS(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def obtener_por_etiqueta(etiqueta):
         """Obtiene todos de una etiqueta"""
+        pass
+
+    @abc.abstractmethod
+    def obtener_etiquetas_de_libro(nombre_libro):
+        """Obtiene las etiquetas de un libro"""
         pass
 
     @abc.abstractmethod

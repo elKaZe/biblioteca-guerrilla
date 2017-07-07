@@ -54,6 +54,23 @@ class Conector(ConectorABS):
                         })
         return ret
 
+    def obtener_por_nombre(self, nombre):
+        self.cursor.execute("""
+        select b.id, b.title, b.author_sort, b.pubdate, b.path
+        from books b
+        where b.title = ?
+        order by b.title""", (nombre,))
+
+        ret = []
+        for registro in self.cursor.fetchall():
+            ret.append({"id": registro[0],
+                        "titulo": registro[1],
+                        "autor": registro[2],
+                        "fecha_publicacion": registro[3],
+                        "ruta": registro[4],
+                        })
+        return ret
+
     def obtener_por_autor(self, autor):
         # Obtenemos los metadatos de cada libro
         self.cursor.execute("""
@@ -70,6 +87,43 @@ class Conector(ConectorABS):
                         "fecha_publicacion": registro[3],
                         "ruta": registro[4],
                         })
+        return ret
+
+    def obtener_por_autor(self, autor):
+        # Obtenemos los metadatos de cada libro
+        self.cursor.execute("""
+        select b.id, b.title, b.author_sort, b.pubdate, b.path
+        from books b,  authors a
+        where b.author_sort = a.sort and a.name = ?
+        order by b.title""", (autor,))
+
+        ret = []
+        for registro in self.cursor.fetchall():
+            ret.append({"id": registro[0],
+                        "titulo": registro[1],
+                        "autor": registro[2],
+                        "fecha_publicacion": registro[3],
+                        "ruta": registro[4],
+                        })
+        return ret
+
+    def obtener_etiquetas_de_libro(nombre_libro):
+        # Obtenemos los metadatos de cada libro
+
+        # self.cursor.execute("""
+        # select b.id, b.title, b.author_sort, b.pubdate, b.path
+        # from books b,  authors a
+        # where b.author_sort = a.sort and a.name = ?
+        # order by b.title""", (autor,))
+
+        # ret = []
+        # for registro in self.cursor.fetchall():
+            # ret.append({"id": registro[0],
+                        # "titulo": registro[1],
+                        # "autor": registro[2],
+                        # "fecha_publicacion": registro[3],
+                        # "ruta": registro[4],
+                        # })
         return ret
 
     def obtener_autores(self):
