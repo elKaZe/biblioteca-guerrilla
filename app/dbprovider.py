@@ -59,7 +59,7 @@ class ConectorABS(metaclass=abc.ABCMeta):
         pass
 
     @abc.abstractmethod
-    def obtener_etiquetas_de_libro(nombre_libro):
+    def obtener_etiquetas_de_libro(id_libro):
         """Obtiene las etiquetas de un libro"""
         pass
 
@@ -70,7 +70,8 @@ class ConectorABS(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def obtener_formatos(id_libro):
-        """Obtiene todos los formatos de un libro"""
+        """Obtiene todos los formatos de un libro
+        devuelve un listado con el formato y el nombre del archivo"""
         pass
 
 
