@@ -39,7 +39,7 @@ class Conector(ConectorABS):
     def obtener_todos(self):
         # Obtenemos los metadatos de cada libro
         self.cursor.execute("""
-        select id, title, author_sort, pubdate, path
+        select id, title,  pubdate, path
         from books
         order by title;
         """)
@@ -48,15 +48,14 @@ class Conector(ConectorABS):
         for registro in self.cursor.fetchall():
             ret.append({"id": registro[0],
                         "titulo": registro[1],
-                        "autor": registro[2],
-                        "fecha_publicacion": registro[3],
-                        "ruta": registro[4],
+                        "fecha_publicacion": registro[2],
+                        "ruta": registro[3],
                         })
         return ret
 
     def obtener_por_nombre(self, nombre):
         self.cursor.execute("""
-        select b.id, b.title, b.author_sort, b.pubdate, b.path
+        select b.id, b.title, b.pubdate, b.path
         from books b
         where b.title = ?
         order by b.title""", (nombre,))
@@ -65,16 +64,15 @@ class Conector(ConectorABS):
         for registro in self.cursor.fetchall():
             ret.append({"id": registro[0],
                         "titulo": registro[1],
-                        "autor": registro[2],
-                        "fecha_publicacion": registro[3],
-                        "ruta": registro[4],
+                        "fecha_publicacion": registro[2],
+                        "ruta": registro[3],
                         })
         return ret
 
     def obtener_por_autor(self, autor):
         # Obtenemos los metadatos de cada libro
         self.cursor.execute("""
-        select b.id, b.title, b.author_sort, b.pubdate, b.path
+        select b.id, b.title, b.pubdate, b.path
         from books b,  authors a
         where b.author_sort = a.sort and a.name = ?
         order by b.title""", (autor,))
@@ -83,47 +81,61 @@ class Conector(ConectorABS):
         for registro in self.cursor.fetchall():
             ret.append({"id": registro[0],
                         "titulo": registro[1],
-                        "autor": registro[2],
-                        "fecha_publicacion": registro[3],
-                        "ruta": registro[4],
+                        "fecha_publicacion": registro[2],
+                        "ruta": registro[3],
                         })
         return ret
 
-    def obtener_por_autor(self, autor):
-        # Obtenemos los metadatos de cada libro
+    def obtener_autores_de_libro(self, id_libro):
         self.cursor.execute("""
-        select b.id, b.title, b.author_sort, b.pubdate, b.path
-        from books b,  authors a
-        where b.author_sort = a.sort and a.name = ?
-        order by b.title""", (autor,))
+        select a.name
+        from authors a,  books_authors_link bal
+        where bal.id = a.id and bal.book = ?""", (id_libro,))
 
         ret = []
         for registro in self.cursor.fetchall():
-            ret.append({"id": registro[0],
-                        "titulo": registro[1],
-                        "autor": registro[2],
-                        "fecha_publicacion": registro[3],
-                        "ruta": registro[4],
-                        })
+            ret.append(registro[0])
         return ret
 
-    def obtener_etiquetas_de_libro(nombre_libro):
+    def obtener_etiquetas_de_libro(self, id_libro):
         # Obtenemos los metadatos de cada libro
 
-        # self.cursor.execute("""
-        # select b.id, b.title, b.author_sort, b.pubdate, b.path
-        # from books b,  authors a
-        # where b.author_sort = a.sort and a.name = ?
-        # order by b.title""", (autor,))
+        self.cursor.execute("""
+        select t.name
+        from tags t,  books_tags_link btl
+        where btl.tag = t.id and btl.book = ?
+        order by t.name""", (id_libro,))
 
-        # ret = []
-        # for registro in self.cursor.fetchall():
-            # ret.append({"id": registro[0],
-                        # "titulo": registro[1],
-                        # "autor": registro[2],
-                        # "fecha_publicacion": registro[3],
-                        # "ruta": registro[4],
-                        # })
+        ret = []
+        for registro in self.cursor.fetchall():
+            ret.append(registro[0])
+        return ret
+
+    def obtener_series_de_libro(self, id_libro):
+        # Obtenemos los metadatos de cada libro
+
+        self.cursor.execute("""
+        select s.name
+        from series s,  books_series_link bsl
+        where bsl.series = s.id and bsl.book = ?
+        order by s.name""", (id_libro,))
+
+        ret = []
+        for registro in self.cursor.fetchall():
+            ret.append(registro[0])
+        return ret
+
+    def obtener_sinopsis(self, id_libro):
+        # Obtenemos los metadatos de cada libro
+
+        self.cursor.execute("""
+        select c.text
+        from comments c
+        where c.book = ? """, (id_libro,))
+
+        ret = []
+        for registro in self.cursor.fetchall():
+            ret.append(registro[0])
         return ret
 
     def obtener_autores(self):
@@ -142,15 +154,20 @@ class Conector(ConectorABS):
 
     def obtener_por_etiqueta(self, etiqueta):
         self.cursor.execute("""
-        select b.id, b.title, b.author_sort, b.pubdate, b.path
+        select distinct b.id, b.title, b.pubdate, b.path
         from books b, tags t, books_tags_link btl
-        where btl.tag = b.id and t.name = ?
+        where btl.book = b.id and btl.tag = t.id and t.name = ?
         order by b.title""", (etiqueta,))
 
         # retornamos la lista de libros
         ret = []
         for registro in self.cursor.fetchall():
-            ret.append(registro)
+            ret.append({"id": registro[0],
+                        "titulo": registro[1],
+                        "fecha_publicacion": registro[2],
+                        "ruta": registro[3],
+                        })
+        print(ret)
         return ret
 
     def obtener_etiquetas(self):
@@ -168,9 +185,9 @@ class Conector(ConectorABS):
     def obtener_formatos(self, id_libro):
         """devuelve el listado de extensiones de los libros en un set"""
 
-        # formato, tamaño, nombre fichero
+        # formato, nombre fichero
         self.cursor.execute("""
-                            select format, uncompressed_size, name
+                            select format, name
                             from data
                             where book=?""", (id_libro,))
 

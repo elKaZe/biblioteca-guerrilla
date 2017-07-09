@@ -37,10 +37,13 @@ class ConectorABS(metaclass=abc.ABCMeta):
     def obtener_por_autor(autor):
         """Obtiene todos de un autor"""
         pass
+    @abc.abstractmethod
+    def obtener_autores_de_libro(id_libro):
+        """Obtiene los autores de un libro"""
 
     @abc.abstractmethod
     def obtener_autores():
-        """Obtiene todos los autores"""
+        """Obtiene todos los autores de la biblioteca"""
         pass
 
     @abc.abstractmethod
@@ -64,6 +67,11 @@ class ConectorABS(metaclass=abc.ABCMeta):
         pass
 
     @abc.abstractmethod
+    def obtener_series_de_libro(id_libro):
+        """Obtiene las series de un libro"""
+        pass
+
+    @abc.abstractmethod
     def obtener_etiquetas():
         """Obtiene todas las etiquetas"""
         pass
@@ -72,6 +80,11 @@ class ConectorABS(metaclass=abc.ABCMeta):
     def obtener_formatos(id_libro):
         """Obtiene todos los formatos de un libro
         devuelve un listado con el formato y el nombre del archivo"""
+        pass
+
+    @abc.abstractmethod
+    def obtener_sinopsis(id_libro):
+        """Obtiene la sinopsis de un libro"""
         pass
 
 
