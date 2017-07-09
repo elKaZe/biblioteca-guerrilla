@@ -40,6 +40,16 @@ def filtrar_por_autor(autor):
     conector.desconectar()
     return libros
 
+def filtrar_por_etiqueta(etiqueta):
+    conector = instanciar_conector()
+    conector.conectar()
+    # obtenemos los libros sin procesar
+    libros = conector.obtener_por_etiqueta(etiqueta)
+    #Normalizamos la lista de libros
+    libros = normalizar_libros(libros, conector)
+    conector.desconectar()
+    return libros
+
 
 def filtrar_por_nombre(nombre_libro):
     """Filtra por el nombre del libro"""
@@ -51,6 +61,23 @@ def filtrar_por_nombre(nombre_libro):
     libros = normalizar_libros(libros, conector)
     conector.desconectar()
     return libros
+
+def separar_en_columnas(libros):
+    """Devuelvo una lista con n listas de libros.
+    para poder mostrarlos ecolumnados pero en orden alfabetico
+    en el html"""
+    lista1 = []
+    lista2 = []
+    lista3 = []
+
+    for i, libro in enumerate(libros):
+        if i%3 == 0:
+            lista3.append(libro)
+        elif i%2 == 0:
+            lista2.append(libro)
+        else:
+            lista1.append(libro)
+    return [lista1, lista2, lista3]
 
 
 @app.route('/')
@@ -66,6 +93,17 @@ def vista_autor_especificado(nombre_autor):
     return render_template("listado.html",
                            libros=libros,
                            titulo=nombre_autor,
+                           )
+
+@app.route('/etiqueta/<string:nombre_etiqueta>/')
+def vista_etiqueta_especificada(nombre_etiqueta):
+    """Muestra los libros de una etiquea"""
+    libros = filtrar_por_etiqueta(nombre_etiqueta)
+    libros = separar_en_columnas(libros)
+
+    return render_template("listado.html",
+                           libros=libros,
+                           titulo=nombre_etiqueta,
                            )
 
 

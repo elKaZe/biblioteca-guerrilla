@@ -3,14 +3,23 @@
 
 {% macro genera_item_libro(titulo, autor, ruta_cover) %}
 <a class="file" href={{ url_for('vista_libro_especificado', nombre_libro=titulo ) }} >
-    <div class="image is-3by2">
+    <div class="image is-4by2">
       <img src="/tapas/{{ ruta_cover }}">
     </div>
     <div class="name">{{ titulo}}</div>
     <div class="timestamp">{{ autor }}</div>
   </a>
 {% endmacro %}
+{% macro genera_columnas(libros) %}
+{% for columna in libros %}
+  {% for libro in columna %}
+      <div class="column is-2">
+          {{ genera_item_libro(libro.titulo, libro.autor, libro.tapa) }}
+      </div>
+  {% endfor %}
+{% endfor %}
 
+{% endmacro %}
 <div class="columns">
   {% include "sidebar.html" %}
   <div class="content column is-10">
@@ -45,12 +54,13 @@
       </div>
     </div>
     <div class="columns files">
-      <div class="column is-2">
-        <!--Genero los libros-->
-        {% for libro in libros %}
-          {{ genera_item_libro(libro.titulo, libro.autor, libro.tapa) }}
-        {% endfor %}
-      </div>
+      {{ genera_columnas(libros) }}
+      <!--<div class="column is-2">-->
+        <!--[>Genero los libros<]-->
+        <!--{% for libro in libros %}-->
+          <!--{{ genera_item_libro(libro.titulo, libro.autor, libro.tapa) }}-->
+        <!--{% endfor %}-->
+      <!--</div>-->
     </div>
   </div>
 </div>
