@@ -38,9 +38,11 @@
     </div>
 
     <div class="columns">
-      <div class="column is-2">
-        <div class="image is-420x640">
-          <img src="/tapas/{{ libro.tapa }}">
+      <div class="column is-one-third">
+        <div class="column">
+          <div class="image is-420x640">
+            <img src="/tapas/{{ libro.tapa }}">
+          </div>
         </div>
       </div>
 
@@ -49,13 +51,46 @@
           <li><strong> Título: </strong>{{ libro.titulo }}</li>
           <li><strong> Autor: </strong>{{ libro.autor}}</li>
           <li><strong> Año de publicación: </strong>{{ libro.fecha_publicacion}}</li>
-          {% if libro.sinopsis %}
-          <li><strong> Sinopsis: </strong></li>
-          <li>{{ libro.sinopsis}}</li>
-          {% endif %}
-          <ul>
+        </ul>
       </div>
+      <div class="column">
+        <ul>
+          {% if libro.etiquetas%}
+          <li><strong> Etiquetas: </strong>
+            {% for etiqueta  in libro.etiquetas %}
+            <a href= "/{{ ruta }}" >
+              <span class="tag is-danger">{{ etiqueta|capitalize }}</span>
+            </a>
+            {% endfor %}
+          </li>
+          {% endif %}
+          {% if libro.series%}
+          <li><strong> Colección: </strong>
+            {% for serie in libro.series%}
+            <a href= "/{{ ruta }}" >
+              <span class="tag is-warning">{{ serie|capitalize }}</span>
+            </a>
+            {% endfor %}
+          </li>
+          {% endif %}
+
+          <li><strong> Descargar: </strong>
+            {% for formato, ruta  in libro.formatos.items() %}
+            <a href= "/{{ ruta }}" >
+              <span class="tag is-primary">{{ formato|upper}}</span>
+            </a>
+            {% endfor %}
+          </li>
+        </ul>
+      </div>
+
     </div>
+    {% if libro.sinopsis %}
+    <li><strong> Sinopsis: </strong></li>
+    <p>
+    {{ libro.sinopsis}}
+    </p>
+    {% endif %}
   </div>
 </div>
 
