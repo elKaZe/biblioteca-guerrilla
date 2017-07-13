@@ -90,7 +90,7 @@ class Conector(ConectorABS):
         self.cursor.execute("""
         select a.name
         from authors a,  books_authors_link bal
-        where bal.id = a.id and bal.book = ?""", (id_libro,))
+        where bal.author= a.id and bal.book = ?""", (id_libro,))
 
         ret = []
         for registro in self.cursor.fetchall():
