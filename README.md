@@ -1,17 +1,13 @@
 Públic(á)
 ========
 
-Genera una web estatica a partir de una base de datos de calibre, te da la info
-de los libros y una descarga.
-
+Genera una webs estaticas a partir de una base de datos de calibre.
+Tiene un listado de categorias como autorx, colecciones, etiquetas... para
+organizar los libros.
 
 super inspirado en [Letras
 viejas](https://github.com/gcoop-libre/letras_viajeras/), cuasi plagio?, queria
 aprender Flask...
-
-links:
-http://www.okyay4.com/nevsblog/2012/accessing-calibre-database-with-python/ <- Calibre
-http://flask.pocoo.org/docs/0.12/ <- Flask
 
 
 Tema basado en

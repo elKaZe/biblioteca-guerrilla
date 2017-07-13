@@ -2,14 +2,12 @@
 {% block listado %}
 
 {% macro genera_columnas(entradas) %}
-{% for columna in entradas%}
-  {% for elemento in columna %}
-      <div class="column">
+{% for elemento in entradas%}
+      <div class="column is-2">
         <a href={{ elemento.url }}>
           {{ elemento.elemento}}
         </a>
       </div>
-  {% endfor %}
 {% endfor %}
 
 {% endmacro %}
@@ -46,7 +44,7 @@
         </div>
       </div>
     </div>
-    <div class="columns files">
+    <div class="columns is-multiline files">
       {{ genera_columnas(entradas) }}
     </div>
   </div>

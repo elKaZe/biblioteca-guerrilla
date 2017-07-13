@@ -11,13 +11,11 @@
   </a>
 {% endmacro %}
 {% macro genera_columnas(libros) %}
-{% for columna in libros %}
-  {% for libro in columna %}
+  {% for libro in libros %}
       <div class="column is-2">
           {{ genera_item_libro(libro.titulo, libro.autor, libro.tapa) }}
       </div>
   {% endfor %}
-{% endfor %}
 
 {% endmacro %}
 <div class="columns">
@@ -53,7 +51,7 @@
         </div>
       </div>
     </div>
-    <div class="columns files">
+    <div class="columns is-multiline files">
       {{ genera_columnas(libros) }}
     </div>
   </div>

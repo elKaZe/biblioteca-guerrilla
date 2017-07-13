@@ -69,24 +69,6 @@ def filtrar_por_nombre(nombre_libro):
  # Miscelaneo
 
 
-def separar_en_columnas(elementos):
-    """Devuelvo una lista con n listas de elementos.
-    para poder mostrarlos ecolumnados pero en orden alfabetico
-    en el html"""
-    lista1 = []
-    lista2 = []
-    lista3 = []
-
-    for i, elemento in enumerate(elementos):
-        if i % 3 == 0:
-            lista3.append(elemento)
-        elif i % 2 == 0:
-            lista2.append(elemento)
-        else:
-            lista1.append(elemento)
-    return [lista1, lista2, lista3]
-
-
 def obtener_autores_con_url():
     """Devuelve una lista con todos los autores"""
     autores = []
@@ -107,14 +89,16 @@ def obtener_autores_con_url():
 
 @app.route('/')
 def index():
-	return render_template('hello.html', name=name)
+	return render_template('index.html',
+                        titulo="¡Biblioteca Guerrilla!",
+                        filtros_generales=obtener_filtros()
+                        )
 
 
 @app.route('/autor/<string:nombre_autor>/')
 def vista_autor_especificado(nombre_autor):
     """Muestra los libros de un autor"""
     libros = filtrar_por_autor(nombre_autor)
-    libros = separar_en_columnas(libros)
 
     return render_template("listado_de_libros.html",
                            libros=libros,
@@ -127,7 +111,6 @@ def vista_autor_especificado(nombre_autor):
 def vista_etiqueta_especificada(nombre_etiqueta):
     """Muestra los libros de una etiquea"""
     libros = filtrar_por_etiqueta(nombre_etiqueta)
-    libros = separar_en_columnas(libros)
 
     return render_template("listado_de_libros.html",
                            libros=libros,
@@ -152,11 +135,9 @@ def vista_libro_especificado(nombre_libro):
 def vista_autores():
     """Lista los autores """
     autores = obtener_autores_con_url()
-    columnas = separar_en_columnas(autores)
-    print(columnas)
 
     return render_template("listado_de_entradas.html",
-                           entradas=columnas,
+                           entradas=autores,
                            titulo="Autores",
                            filtros_generales=obtener_filtros(),
                            path='autor'
