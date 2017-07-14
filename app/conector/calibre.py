@@ -111,20 +111,6 @@ class Conector(ConectorABS):
             ret.append(registro[0])
         return ret
 
-    def obtener_series_de_libro(self, id_libro):
-        # Obtenemos los metadatos de cada libro
-
-        self.cursor.execute("""
-        select s.name
-        from series s,  books_series_link bsl
-        where bsl.series = s.id and bsl.book = ?
-        order by s.name""", (id_libro,))
-
-        ret = []
-        for registro in self.cursor.fetchall():
-            ret.append(registro[0])
-        return ret
-
     def obtener_sinopsis(self, id_libro):
         # Obtenemos los metadatos de cada libro
 
@@ -150,7 +136,46 @@ class Conector(ConectorABS):
         return ret
 
     def obtener_por_serie(self, serie):
-        pass
+        self.cursor.execute("""
+        select distinct b.id, b.title, b.pubdate, b.path
+        from books b, series s, books_series_link bsl
+        where bsl.book = b.id and bsl.series = s.id and s.name = ?
+        order by b.title""", (serie,))
+
+        # retornamos la lista de libros
+        ret = []
+        for registro in self.cursor.fetchall():
+            ret.append({"id": registro[0],
+                        "titulo": registro[1],
+                        "fecha_publicacion": registro[2],
+                        "ruta": registro[3],
+                        })
+        return ret
+
+    def obtener_series(self):
+        self.cursor.execute("""
+        select s.name
+        from series s
+        order by s.name""")
+        # retornamos la lista de autores
+        ret = []
+        for registro in self.cursor.fetchall():
+            ret.append(registro[0])
+        return ret
+
+    def obtener_series_de_libro(self, id_libro):
+        # Obtenemos los metadatos de cada libro
+
+        self.cursor.execute("""
+        select s.name
+        from series s,  books_series_link bsl
+        where bsl.series = s.id and bsl.book = ?
+        order by s.name""", (id_libro,))
+
+        ret = []
+        for registro in self.cursor.fetchall():
+            ret.append(registro[0])
+        return ret
 
     def obtener_por_etiqueta(self, etiqueta):
         self.cursor.execute("""
@@ -167,7 +192,6 @@ class Conector(ConectorABS):
                         "fecha_publicacion": registro[2],
                         "ruta": registro[3],
                         })
-        print(ret)
         return ret
 
     def obtener_etiquetas(self):
