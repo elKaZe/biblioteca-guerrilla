@@ -23,12 +23,12 @@ def obtener_filtros():
     filtros = (
         {'url': url_for('vista_autores'),
          'nombre': "Autores"},
-        # {'url': url_for('categorias'),
-        # 'nombre': "Categorias"},
+        {'url': url_for('vista_etiquetas'),
+         'nombre': "Categorias"},
         # {'url': url_for('idiomas'),
         # 'nombre': "Idiomas"},
-        # {'url': url_for('series'),
-        # 'nombre': "Series"},
+        {'url': url_for('vista_series'),
+         'nombre': "Series"},
     )
     return filtros
 
@@ -55,6 +55,17 @@ def filtrar_por_etiqueta(etiqueta):
     return libros
 
 
+def filtrar_por_serie(serie):
+    conector = instanciar_conector()
+    conector.conectar()
+    # obtenemos los libros sin procesar
+    libros = conector.obtener_por_serie(serie)
+    #Normalizamos la lista de libros
+    libros = normalizar_libros(libros, conector)
+    conector.desconectar()
+    return libros
+
+
 def filtrar_por_nombre(nombre_libro):
     """Filtra por el nombre del libro"""
     conector = instanciar_conector()
@@ -67,6 +78,38 @@ def filtrar_por_nombre(nombre_libro):
     return libros
 
  # Miscelaneo
+
+
+def obtener_series_con_url():
+    """Devuelve una lista con todos los series"""
+    series = []
+
+    conector = instanciar_conector()
+    conector.conectar()
+    # obtenemos los series sin procesar
+    series_crudo = conector.obtener_series()
+    for serie in series_crudo:
+        url = url_for('vista_serie_especificada', nombre_serie=serie)
+        series.append({'url': url, 'elemento': serie})
+
+    conector.desconectar()
+    return series
+
+
+def obtener_etiquetas_con_url():
+    """Devuelve una lista con todos los etiquetas"""
+    etiquetas = []
+
+    conector = instanciar_conector()
+    conector.conectar()
+    # obtenemos los etiquetas sin procesar
+    etiquetas_crudo = conector.obtener_etiquetas()
+    for etiqueta in etiquetas_crudo:
+        url = url_for('vista_etiqueta_especificada', nombre_etiqueta=etiqueta)
+        etiquetas.append({'url': url, 'elemento': etiqueta})
+
+    conector.desconectar()
+    return etiquetas
 
 
 def obtener_autores_con_url():
@@ -107,6 +150,18 @@ def vista_autor_especificado(nombre_autor):
                            )
 
 
+@app.route('/serie/<string:nombre_serie>/')
+def vista_serie_especificada(nombre_serie):
+    """Muestra los libros de una etiquea"""
+    libros = filtrar_por_serie(nombre_serie)
+
+    return render_template("listado_de_libros.html",
+                           libros=libros,
+                           titulo=nombre_serie,
+                           filtros_generales=obtener_filtros()
+                           )
+
+
 @app.route('/etiqueta/<string:nombre_etiqueta>/')
 def vista_etiqueta_especificada(nombre_etiqueta):
     """Muestra los libros de una etiquea"""
@@ -141,6 +196,32 @@ def vista_autores():
                            titulo="Autores",
                            filtros_generales=obtener_filtros(),
                            path='autor'
+                           )
+
+
+@app.route('/etiquetas/')
+def vista_etiquetas():
+    """Lista las etiquetas"""
+    etiquetas = obtener_etiquetas_con_url()
+
+    return render_template("listado_de_entradas.html",
+                           entradas=etiquetas,
+                           titulo="Categorias",
+                           filtros_generales=obtener_filtros(),
+                           path='etiquetas'
+                           )
+
+
+@app.route('/series/')
+def vista_series():
+    """Lista las series"""
+    series = obtener_series_con_url()
+
+    return render_template("listado_de_entradas.html",
+                           entradas=series,
+                           titulo="Series",
+                           filtros_generales=obtener_filtros(),
+                           path='series'
                            )
 
 
