@@ -11,6 +11,8 @@
 from app.dbprovider import instanciar_conector
 from app.utils_libro import normalizar_libros
 from flask import Flask, render_template, send_from_directory, url_for
+from urllib.parse import quote
+
 app = Flask('__name__')
 # Levantamos la config
 app.config.from_object("app.settings")
@@ -138,7 +140,7 @@ def index():
                         )
 
 
-@app.route('/autor/<string:nombre_autor>/')
+@app.route('/autor/<path:nombre_autor>/')
 def vista_autor_especificado(nombre_autor):
     """Muestra los libros de un autor"""
     libros = filtrar_por_autor(nombre_autor)
@@ -150,7 +152,7 @@ def vista_autor_especificado(nombre_autor):
                            )
 
 
-@app.route('/serie/<string:nombre_serie>/')
+@app.route('/serie/<path:nombre_serie>/')
 def vista_serie_especificada(nombre_serie):
     """Muestra los libros de una etiquea"""
     libros = filtrar_por_serie(nombre_serie)
@@ -162,7 +164,7 @@ def vista_serie_especificada(nombre_serie):
                            )
 
 
-@app.route('/etiqueta/<string:nombre_etiqueta>/')
+@app.route('/etiqueta/<path:nombre_etiqueta>')
 def vista_etiqueta_especificada(nombre_etiqueta):
     """Muestra los libros de una etiquea"""
     libros = filtrar_por_etiqueta(nombre_etiqueta)
@@ -174,7 +176,7 @@ def vista_etiqueta_especificada(nombre_etiqueta):
                            )
 
 
-@app.route('/libro/<string:nombre_libro>/')
+@app.route('/libro/<path:nombre_libro>/')
 def vista_libro_especificado(nombre_libro):
     """Muestra el libro pedido"""
     libros = filtrar_por_nombre(nombre_libro)
