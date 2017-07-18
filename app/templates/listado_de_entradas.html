@@ -4,8 +4,8 @@
 {% macro genera_columnas(entradas) %}
 {% for elemento in entradas%}
       <div class="column is-1">
-        <a href={{ elemento.url }}>
-          {{ elemento.elemento|capitalize }}
+        <a href={{ elemento.url }} title="{{elemento.elemento | capitalize}}">
+          {{ elemento.elemento|truncate(50, True)|capitalize }}
         </a>
       </div>
 {% endfor %}
