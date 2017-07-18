@@ -1,22 +1,31 @@
 {% extends "central.html" %}
 {% block listado %}
 
-{% macro genera_columnas(entradas) %}
-{% for elemento in entradas%}
-      <div class="column is-1">
+{% macro genera_lista(entradas) %}
+  <!--Recibo un diccionario con Item Letra y elementos que comiencen con esa letra-->
+<ol>
+  {% for key, value  in entradas|dictsort %}
+  <li>{{key}}
+    <ol>
+      {% for elemento in value %}
+      <li>
         <a href={{ elemento.url }} title="{{elemento.elemento | capitalize}}">
           {{ elemento.elemento|truncate(50, True)|capitalize }}
         </a>
-      </div>
-{% endfor %}
-
+      </li>
+      {% endfor %}
+    </ol>
+  </li>
+  {% endfor %}
+  <ol>
 {% endmacro %}
+
 <div class="columns">
   {% include "sidebar.html" %}
   <div class="content column is-10">
     <div class="title is-2">{{ titulo }}</div>
     <div class="columns is-multiline files">
-      {{ genera_columnas(entradas) }}
+      {{ genera_lista(entradas) }}
     </div>
   </div>
 </div>

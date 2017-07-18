@@ -11,7 +11,6 @@
 from app.dbprovider import instanciar_conector
 from app.utils_libro import normalizar_libros
 from flask import Flask, render_template, send_from_directory, url_for
-from urllib.parse import quote
 
 app = Flask('__name__')
 # Levantamos la config
@@ -129,6 +128,21 @@ def obtener_autores_con_url():
     conector.desconectar()
     return autores
 
+
+def formatear_elementos_para_template(elementos):
+    """Genero un diccionario con clave la primer letra y todos los elementos que
+    comiencen con ella en una lista como item"""
+
+    diccionario = {}
+    for elemento in elementos:
+        # Dentro del elemento hay dos items, 'url' y 'elemento'
+        primera_letra = elemento.get('elemento')[0].upper()
+        if diccionario.get(primera_letra, None) is None:
+            diccionario[primera_letra] = []
+
+        diccionario[primera_letra].append(elemento)
+    return diccionario
+
 # Vistas
 
 
@@ -192,6 +206,7 @@ def vista_libro_especificado(nombre_libro):
 def vista_autores():
     """Lista los autores """
     autores = obtener_autores_con_url()
+    autores = formatear_elementos_para_template(autores)
 
     return render_template("listado_de_entradas.html",
                            entradas=autores,
@@ -205,6 +220,7 @@ def vista_autores():
 def vista_etiquetas():
     """Lista las etiquetas"""
     etiquetas = obtener_etiquetas_con_url()
+    etiquetas = formatear_elementos_para_template(etiquetas)
 
     return render_template("listado_de_entradas.html",
                            entradas=etiquetas,
@@ -218,6 +234,7 @@ def vista_etiquetas():
 def vista_series():
     """Lista las series"""
     series = obtener_series_con_url()
+    series = formatear_elementos_para_template(series)
 
     return render_template("listado_de_entradas.html",
                            entradas=series,
