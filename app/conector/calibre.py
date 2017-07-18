@@ -55,7 +55,7 @@ class Conector(ConectorABS):
 
     def obtener_por_nombre(self, nombre):
         self.cursor.execute("""
-        select b.id, b.title, b.pubdate, b.path
+        select distinct b.id, b.title, b.pubdate, b.path
         from books b
         where b.title = ?
         order by b.title""", (nombre,))
@@ -72,7 +72,7 @@ class Conector(ConectorABS):
     def obtener_por_autor(self, autor):
         # Obtenemos los metadatos de cada libro
         self.cursor.execute("""
-        select b.id, b.title, b.pubdate, b.path
+        select distinct b.id, b.title, b.pubdate, b.path
         from books b,  authors a
         where b.author_sort = a.sort and a.name = ?
         order by b.title""", (autor,))
@@ -88,7 +88,7 @@ class Conector(ConectorABS):
 
     def obtener_autores_de_libro(self, id_libro):
         self.cursor.execute("""
-        select a.name
+        select distinct a.name
         from authors a,  books_authors_link bal
         where bal.author= a.id and bal.book = ?""", (id_libro,))
 
