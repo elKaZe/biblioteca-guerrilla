@@ -4,35 +4,31 @@
 {% macro genera_lista(entradas) %}
 <!--Recibo un diccionario con Item Letra y elementos que comiencen con esa letra-->
 {% for key, value  in entradas|dictsort %}
-<div class="column is-one-third ">
-<dl>
-  <dt class="title dt">{{key}}</dt>
-  {% for elemento in value %}
-  <dd>
-  <a href={{ elemento.url }} title="{{elemento.elemento | capitalize}}">
-    {{ elemento.elemento|truncate(50, True)|capitalize }}
-  </a>
-  </dd>
-  {% endfor %}
-</dl>
+<div class="column is-one-third">
+  <dl>
+    <dt class="title dt">{{key}}</dt>
+    {% for elemento in value %}
+    <dd>
+    <a href={{ elemento.url }} title="{{elemento.elemento | capitalize}}">
+      {{ elemento.elemento|truncate(50, True)|capitalize }}
+    </a>
+    </dd>
+    {% endfor %}
+  </dl>
 </div>
 {% endfor %}
 {% endmacro %}
 
 <div class="columns">
   {% include "sidebar.html" %}
-  <div class="column is-12">
-  <div class="content">
-    <div class="title is-2">{{ titulo }}</div>
-    </div>
-    </div>
-    <div class="columns is-multiline ">
-
+  <!--a la derecha del sidebar-->
+  <div class="column is-10 content">
+    <div class="title">{{ titulo }}</div>
+    <div class="columns is-multiline files">
       {{ genera_lista(entradas) }}
       <!--Columnas-->
-    <!--content-->
+    </div>
   </div>
-  <!--Columnas-->
 </div>
 
 {% endblock %}
