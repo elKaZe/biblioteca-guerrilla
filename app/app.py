@@ -149,7 +149,7 @@ def formatear_elementos_para_template(elementos):
 @app.route('/')
 def index():
 	return render_template('index.html',
-                        titulo="¡Biblioteca Guerrilla!",
+                        titulo="",
                         filtros_generales=obtener_filtros()
                         )
 
@@ -246,4 +246,9 @@ def vista_series():
 
 @app.route('/tapas/<path:ruta>')
 def devolver_tapa(ruta):
+    return send_from_directory('', ruta)
+
+
+@app.route('/archivo/<path:ruta>')
+def devolver_libro_descarga(ruta):
     return send_from_directory('', ruta)
