@@ -58,7 +58,7 @@
 
             <strong> Descargar: </strong>
             {% for formato, ruta  in libro.formatos.items() %}
-            <a href= "/{{ ruta }}" >
+            <a href= "/archivo/{{ ruta }}" >
               <span class="tag is-primary">{{ formato|upper}}</span>
             </a>
             {% endfor %}
