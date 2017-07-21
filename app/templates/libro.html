@@ -45,7 +45,7 @@
               {% if libro.series%}
               <strong> Colección: </strong>
               {% for serie in libro.series%}
-              <a href= "/{{ ruta }}" >
+              <a href={{ url_for('vista_serie_especificada', nombre_serie=serie) }} >
                 <span class="tag is-warning">{{ serie|capitalize }}</span>
               </a>
               {% endfor %}
