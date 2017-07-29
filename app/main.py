@@ -7,14 +7,16 @@
 """
 
 """
-
-from app.dbprovider import instanciar_conector
-from app.utils_libro import normalizar_libros
 from flask import Flask, render_template, send_from_directory, url_for
+
+
+from  app.utils.utils_libro  import normalizar_libros
+from app.conector.dbprovider import instanciar_conector
 
 app = Flask('__name__')
 # Levantamos la config
 app.config.from_object("app.settings")
+
 
 # Filtros
 

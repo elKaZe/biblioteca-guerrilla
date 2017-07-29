@@ -10,7 +10,7 @@ fi
 
 
 export FLASK_DEBUG=1
-export FLASK_APP=app.py
+export FLASK_APP=main.py
 pushd app
 flask run
 popd
