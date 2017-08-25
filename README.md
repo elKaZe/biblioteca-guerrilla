@@ -1,15 +1,22 @@
-Públic(á)
+Biblioteca Guerrilla
 ========
 
-Genera una webs estaticas a partir de una base de datos de calibre.
-Tiene un listado de categorias como autorx, colecciones, etiquetas... para
-organizar los libros.
+### ¿ Que es ?
+Biblioteca Guerilla es una aplicacion bastante basica para generar una
+biblioteca online y embeberla en un router ( u otros dispositivos :D )
 
-super inspirado en [Letras
-viejas](https://github.com/gcoop-libre/letras_viajeras/), cuasi plagio?, queria
+### ¿ y como funciona esto ?
+A partir de una base de datos de [Calibre](https://calibre-ebook.com/), se
+obtienen los metadatos, portadas y los libros en si, con esto generamos paginas
+estaticas.
+
+### ¿ que licencia tiene ?
+GPLv3+, chequea el archivo [LICENCE](LICENCE)
+
+---------------------------
+
+Inspirado en [Letras viajeras](https://github.com/gcoop-libre/letras_viajeras/)
 aprender Flask...
 
 
-Tema basado en
-[aside](https://github.com/dansup/bulma-templates/blob/gh-pages/css/aside.css)
-de [dansup](https://github.com/dansup) con licencia MIT
+Tema basado en [aside](https://github.com/dansup/bulma-templates/blob/gh-pages/css/aside.css) de [dansup](https://github.com/dansup) con licencia MIT
