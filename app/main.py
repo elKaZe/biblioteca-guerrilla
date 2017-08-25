@@ -7,15 +7,23 @@
 """
 
 """
-from flask import Flask, render_template, send_from_directory, url_for
+from flask import Flask, render_template, send_from_directory, url_for, redirect
+import jinja2
 
 
-from  app.utils.utils_libro  import normalizar_libros
+from app.utils.utils_libro import normalizar_libros
 from app.conector.dbprovider import instanciar_conector
 
 app = Flask('__name__')
 # Levantamos la config
 app.config.from_object("app.settings")
+
+# cargamos la ruta a los templates
+my_loader = jinja2.ChoiceLoader([
+    app.jinja_loader,
+    jinja2.FileSystemLoader('app/templates'),
+])
+app.jinja_loader = my_loader
 
 
 # Filtros
@@ -159,6 +167,9 @@ def index():
 @app.route('/autor/<path:nombre_autor>/')
 def vista_autor_especificado(nombre_autor):
     """Muestra los libros de un autor"""
+    if not nombre_autor:
+        return redirect(url_for('vista_autores'))
+
     libros = filtrar_por_autor(nombre_autor)
 
     return render_template("listado_de_libros.html",
@@ -171,6 +182,9 @@ def vista_autor_especificado(nombre_autor):
 @app.route('/serie/<path:nombre_serie>/')
 def vista_serie_especificada(nombre_serie):
     """Muestra los libros de una etiquea"""
+    if not nombre_serie:
+        return redirect(url_for('vista_series'))
+
     libros = filtrar_por_serie(nombre_serie)
 
     return render_template("listado_de_libros.html",
@@ -183,6 +197,9 @@ def vista_serie_especificada(nombre_serie):
 @app.route('/etiqueta/<path:nombre_etiqueta>')
 def vista_etiqueta_especificada(nombre_etiqueta):
     """Muestra los libros de una etiquea"""
+    if not nombre_etiqueta:
+        return redirect(url_for('vista_etiquetas'))
+
     libros = filtrar_por_etiqueta(nombre_etiqueta)
 
     return render_template("listado_de_libros.html",
@@ -202,6 +219,11 @@ def vista_libro_especificado(nombre_libro):
                            titulo=nombre_libro,
                            filtros_generales=obtener_filtros()
                            )
+
+
+@app.route('/libro/')
+def redirect_autor():
+    return redirect(url_for('vista_libros'))
 
 
 @app.route('/autores/')
