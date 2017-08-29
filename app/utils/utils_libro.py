@@ -6,7 +6,7 @@
 # Distributed under terms of the GPLv3+ license.
 
 import os
-from app.settings import RUTA_BASE_LIBROS
+from settings import RUTA_BASE_LIBROS
 
 """
 Funciones que laburan con los libros
@@ -19,9 +19,10 @@ def agregar_etiquetas(libros, conector):
     ej libro["formato"] -> -{'pdf': '/tmp/libro.pdf'}"""
 
     for libro in libros:
-        libro['etiquetas'] = conector.obtener_etiquetas_de_libro(\
-                libro.get('id'))
+        libro['etiquetas'] = conector.obtener_etiquetas_de_libro(
+            libro.get('id'))
     return libros
+
 
 def agregar_formatos(libros, conector):
     """Agrega el formato en forma de diccionario con su ruta al archivo
@@ -35,13 +36,14 @@ def agregar_formatos(libros, conector):
             nombre_archivo = elem_formato[1] + "." + tipo_fichero
 
             ruta_fichero = os.path.join(RUTA_BASE_LIBROS,
-                    libro['ruta'],
-                    nombre_archivo)
+                                        libro['ruta'],
+                                        nombre_archivo)
             dic_formato[tipo_fichero] = ruta_fichero
 
         libro["formatos"] = dic_formato
 
     return libros
+
 
 def agregar_ruta_cover(libros, conector):
     """Agrega la ruta de la tapa del libro a la lista de libros, el libro es un
@@ -79,6 +81,7 @@ def agregar_etiquetas(libros, conector):
         libro["etiquetas"] = etiquetas
     return libros
 
+
 def agregar_autores(libros, conector):
     """Añade los autores de un libro"""
 
@@ -87,6 +90,7 @@ def agregar_autores(libros, conector):
         libro["autores"] = autores
 
     return libros
+
 
 def agregar_sinopsis(libros, conector):
     """Añade las etiquetas de un libro"""
@@ -97,6 +101,7 @@ def agregar_sinopsis(libros, conector):
 
     return libros
 
+
 def agregar_series(libros, conector):
     """Añade las etiquetas de un libro"""
 
@@ -104,6 +109,7 @@ def agregar_series(libros, conector):
         series = conector.obtener_series_de_libro(libro.get("id", ''))
         libro["series"] = series
     return libros
+
 
 def normalizar_libros(libros, conector):
     """Se encarga de normalizar los atributos de los libros"""

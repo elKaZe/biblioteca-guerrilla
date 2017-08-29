@@ -9,21 +9,15 @@
 """
 from flask import Flask, render_template, send_from_directory, url_for, redirect
 import jinja2
+import urllib
 
 
-from app.utils.utils_libro import normalizar_libros
-from app.conector.dbprovider import instanciar_conector
+from utils.utils_libro import normalizar_libros
+from conector.dbprovider import instanciar_conector
 
 app = Flask('__name__')
 # Levantamos la config
-app.config.from_object("app.settings")
-
-# cargamos la ruta a los templates
-my_loader = jinja2.ChoiceLoader([
-    app.jinja_loader,
-    jinja2.FileSystemLoader('app/templates'),
-])
-app.jinja_loader = my_loader
+app.config.from_object("settings")
 
 
 # Filtros
@@ -69,6 +63,7 @@ def filtrar_por_etiqueta(etiqueta):
 def filtrar_por_serie(serie):
     conector = instanciar_conector()
     conector.conectar()
+    serie = urldencode(serie)
     # obtenemos los libros sin procesar
     libros = conector.obtener_por_serie(serie)
     #Normalizamos la lista de libros
@@ -100,7 +95,8 @@ def obtener_series_con_url():
     # obtenemos los series sin procesar
     series_crudo = conector.obtener_series()
     for serie in series_crudo:
-        url = url_for('vista_serie_especificada', nombre_serie=serie)
+        serie_safe = urlencode(serie)
+        url = url_for('vista_serie_especificada', nombre_serie=serie_safe)
         series.append({'url': url, 'elemento': serie})
 
     conector.desconectar()
@@ -179,12 +175,18 @@ def vista_autor_especificado(nombre_autor):
                            )
 
 
+@app.route('/autor/')
+def redirect_autor():
+    return redirect(url_for('vista_autores'))
+
+
 @app.route('/serie/<path:nombre_serie>/')
 def vista_serie_especificada(nombre_serie):
     """Muestra los libros de una etiquea"""
     if not nombre_serie:
         return redirect(url_for('vista_series'))
 
+    nombre_serie = urldencode(nombre_serie)
     libros = filtrar_por_serie(nombre_serie)
 
     return render_template("listado_de_libros.html",
@@ -194,12 +196,18 @@ def vista_serie_especificada(nombre_serie):
                            )
 
 
+@app.route('/serie/')
+def redirect_serie():
+    return redirect(url_for('vista_series'))
+
+
 @app.route('/etiqueta/<path:nombre_etiqueta>')
 def vista_etiqueta_especificada(nombre_etiqueta):
     """Muestra los libros de una etiquea"""
     if not nombre_etiqueta:
         return redirect(url_for('vista_etiquetas'))
 
+    nombre_etiqueta = urldencode(nombre_etiqueta)
     libros = filtrar_por_etiqueta(nombre_etiqueta)
 
     return render_template("listado_de_libros.html",
@@ -209,9 +217,15 @@ def vista_etiqueta_especificada(nombre_etiqueta):
                            )
 
 
+@app.route('/etiqueta/')
+def redirect_etiqueta():
+    return redirect(url_for('vista_etiquetas'))
+
+
 @app.route('/libro/<path:nombre_libro>/')
 def vista_libro_especificado(nombre_libro):
     """Muestra el libro pedido"""
+    nombre_libro = urllib.parse.unquote_plus(nombre_libro)
     libros = filtrar_por_nombre(nombre_libro)
 
     return render_template("libro.html",
@@ -222,8 +236,8 @@ def vista_libro_especificado(nombre_libro):
 
 
 @app.route('/libro/')
-def redirect_autor():
-    return redirect(url_for('vista_libros'))
+def redirect_libro():
+    return redirect(url_for('index'))
 
 
 @app.route('/autores/')
@@ -276,3 +290,18 @@ def devolver_tapa(ruta):
 @app.route('/archivo/<path:ruta>')
 def devolver_libro_descarga(ruta):
     return send_from_directory('', ruta)
+
+
+def urlencode(s):
+    s = urllib.parse.quote_plus(s)
+    return s
+
+
+def urldencode(s):
+    s = urllib.parse.unquote_plus(s)
+    return s
+
+
+@app.context_processor
+def utility_processor():
+    return dict(urlencode=urlencode)
