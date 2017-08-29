@@ -8,7 +8,7 @@
 
 from importlib import import_module
 import abc
-from app import settings
+import settings
 
 
 class ConectorABS(metaclass=abc.ABCMeta):
@@ -37,6 +37,7 @@ class ConectorABS(metaclass=abc.ABCMeta):
     def obtener_por_autor(autor):
         """Obtiene todos de un autor"""
         pass
+
     @abc.abstractmethod
     def obtener_autores_de_libro(id_libro):
         """Obtiene los autores de un libro"""

@@ -7,7 +7,7 @@ import sys
 import os
 import sqlite3
 import logging
-from app.conector.dbprovider import ConectorABS
+from conector.dbprovider import ConectorABS
 
 
 class Conector(ConectorABS):
