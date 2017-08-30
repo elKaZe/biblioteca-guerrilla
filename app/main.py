@@ -112,7 +112,10 @@ def obtener_etiquetas_con_url():
     # obtenemos los etiquetas sin procesar
     etiquetas_crudo = conector.obtener_etiquetas()
     for etiqueta in etiquetas_crudo:
-        url = url_for('vista_etiqueta_especificada', nombre_etiqueta=etiqueta)
+        etiqueta_safe = urlencode(etiqueta)
+        url = url_for(
+            'vista_etiqueta_especificada',
+            nombre_etiqueta=etiqueta_safe)
         etiquetas.append({'url': url, 'elemento': etiqueta})
 
     conector.desconectar()
@@ -128,7 +131,8 @@ def obtener_autores_con_url():
     # obtenemos los autores sin procesar
     autores_crudo = conector.obtener_autores()
     for autor in autores_crudo:
-        url = url_for('vista_autor_especificado', nombre_autor=autor)
+        autor_safe = urlencode(autor)
+        url = url_for('vista_autor_especificado', nombre_autor=autor_safe)
         autores.append({'url': url, 'elemento': autor})
 
     conector.desconectar()
@@ -166,6 +170,7 @@ def vista_autor_especificado(nombre_autor):
     if not nombre_autor:
         return redirect(url_for('vista_autores'))
 
+    nombre_autor = urldencode(nombre_autor)
     libros = filtrar_por_autor(nombre_autor)
 
     return render_template("listado_de_libros.html",
@@ -225,7 +230,7 @@ def redirect_etiqueta():
 @app.route('/libro/<path:nombre_libro>/')
 def vista_libro_especificado(nombre_libro):
     """Muestra el libro pedido"""
-    nombre_libro = urllib.parse.unquote_plus(nombre_libro)
+    nombre_libro = urldencode(nombre_libro)
     libros = filtrar_por_nombre(nombre_libro)
 
     return render_template("libro.html",
