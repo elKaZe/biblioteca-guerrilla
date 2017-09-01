@@ -12,6 +12,7 @@ import jinja2
 import urllib
 
 
+from settings import RUTA_BASE_LIBROS
 from utils.utils_libro import normalizar_libros
 from utils.utils_url import urlencode, urldecode
 from conector.dbprovider import instanciar_conector
@@ -288,16 +289,17 @@ def vista_series():
                            )
 
 
-@app.route('/tapas/<path:ruta>')
+@app.route('/tapas/<string:ruta>')
 def devolver_tapa(ruta):
+    print(ruta)
     ruta_safe = urldecode(ruta)
-    return send_from_directory('', ruta_safe)
+    return send_from_directory(RUTA_BASE_LIBROS, ruta_safe)
 
 
 @app.route('/archivo/<path:ruta>')
 def devolver_libro_descarga(ruta):
     ruta_safe = urldecode(ruta)
-    return send_from_directory('', ruta_safe)
+    return send_from_directory(RUTA_BASE_LIBROS, ruta_safe)
 
 
 @app.context_processor
