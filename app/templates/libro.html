@@ -10,7 +10,7 @@
     <div class="columns" style="margin-top: 0.75rem;">
       <div class="column is-one-third">
         <div class="image is-420x640">
-          <img src="/tapas/{{ libro.tapa }}">
+          <img src={{ url_for('devolver_tapa', ruta=libro.tapa) }}">
       </div>
       </div>
 
@@ -58,7 +58,7 @@
 
             <strong> Descargar: </strong>
             {% for formato, ruta  in libro.formatos.items() %}
-            <a href= "/archivo/{{ ruta }}" >
+              <a href={{url_for('devolver_libro_descarga', ruta=ruta)}}>
               <span class="tag is-primary">{{ formato|upper}}</span>
             </a>
             {% endfor %}
