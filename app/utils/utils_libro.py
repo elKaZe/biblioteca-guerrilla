@@ -7,6 +7,7 @@
 
 import os
 from settings import RUTA_BASE_LIBROS
+from .utils_url import urlencode
 
 """
 Funciones que laburan con los libros
@@ -38,7 +39,8 @@ def agregar_formatos(libros, conector):
             ruta_fichero = os.path.join(RUTA_BASE_LIBROS,
                                         libro['ruta'],
                                         nombre_archivo)
-            dic_formato[tipo_fichero] = ruta_fichero
+            # Encodemos al guardar
+            dic_formato[tipo_fichero] = urlencode(ruta_fichero)
 
         libro["formatos"] = dic_formato
 

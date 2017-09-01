@@ -13,6 +13,7 @@ import urllib
 
 
 from utils.utils_libro import normalizar_libros
+from utils.utils_url import urlencode, urldecode
 from conector.dbprovider import instanciar_conector
 
 app = Flask('__name__')
@@ -63,7 +64,7 @@ def filtrar_por_etiqueta(etiqueta):
 def filtrar_por_serie(serie):
     conector = instanciar_conector()
     conector.conectar()
-    serie = urldencode(serie)
+    serie = urldecode(serie)
     # obtenemos los libros sin procesar
     libros = conector.obtener_por_serie(serie)
     #Normalizamos la lista de libros
@@ -170,7 +171,7 @@ def vista_autor_especificado(nombre_autor):
     if not nombre_autor:
         return redirect(url_for('vista_autores'))
 
-    nombre_autor = urldencode(nombre_autor)
+    nombre_autor = urldecode(nombre_autor)
     libros = filtrar_por_autor(nombre_autor)
 
     return render_template("listado_de_libros.html",
@@ -191,7 +192,7 @@ def vista_serie_especificada(nombre_serie):
     if not nombre_serie:
         return redirect(url_for('vista_series'))
 
-    nombre_serie = urldencode(nombre_serie)
+    nombre_serie = urldecode(nombre_serie)
     libros = filtrar_por_serie(nombre_serie)
 
     return render_template("listado_de_libros.html",
@@ -212,7 +213,7 @@ def vista_etiqueta_especificada(nombre_etiqueta):
     if not nombre_etiqueta:
         return redirect(url_for('vista_etiquetas'))
 
-    nombre_etiqueta = urldencode(nombre_etiqueta)
+    nombre_etiqueta = urldecode(nombre_etiqueta)
     libros = filtrar_por_etiqueta(nombre_etiqueta)
 
     return render_template("listado_de_libros.html",
@@ -230,7 +231,7 @@ def redirect_etiqueta():
 @app.route('/libro/<path:nombre_libro>/')
 def vista_libro_especificado(nombre_libro):
     """Muestra el libro pedido"""
-    nombre_libro = urldencode(nombre_libro)
+    nombre_libro = urldecode(nombre_libro)
     libros = filtrar_por_nombre(nombre_libro)
 
     return render_template("libro.html",
@@ -289,22 +290,14 @@ def vista_series():
 
 @app.route('/tapas/<path:ruta>')
 def devolver_tapa(ruta):
-    return send_from_directory('', ruta)
+    ruta_safe = urldecode(ruta)
+    return send_from_directory('', ruta_safe)
 
 
 @app.route('/archivo/<path:ruta>')
 def devolver_libro_descarga(ruta):
-    return send_from_directory('', ruta)
-
-
-def urlencode(s):
-    s = urllib.parse.quote_plus(s)
-    return s
-
-
-def urldencode(s):
-    s = urllib.parse.unquote_plus(s)
-    return s
+    ruta_safe = urldecode(ruta)
+    return send_from_directory('', ruta_safe)
 
 
 @app.context_processor
