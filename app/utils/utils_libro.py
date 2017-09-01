@@ -6,7 +6,6 @@
 # Distributed under terms of the GPLv3+ license.
 
 import os
-from settings import RUTA_BASE_LIBROS
 from .utils_url import urlencode
 
 """
@@ -36,9 +35,9 @@ def agregar_formatos(libros, conector):
             tipo_fichero = (elem_formato[0]).lower()
             nombre_archivo = elem_formato[1] + "." + tipo_fichero
 
-            ruta_fichero = os.path.join(RUTA_BASE_LIBROS,
-                                        libro['ruta'],
-                                        nombre_archivo)
+            ruta_fichero = os.path.join(
+                libro['ruta'],
+                nombre_archivo)
             # Encodemos al guardar
             dic_formato[tipo_fichero] = urlencode(ruta_fichero)
 
@@ -54,10 +53,10 @@ def agregar_ruta_cover(libros, conector):
     nombre_fichero_tapa = "cover.jpg"
 
     for libro in libros:
-        ruta_cover = os.path.join(RUTA_BASE_LIBROS,
-                                  libro.get('ruta'),
-                                  nombre_fichero_tapa)
-        libro["tapa"] = ruta_cover
+        ruta_cover = os.path.join(
+            libro.get('ruta'),
+            nombre_fichero_tapa)
+        libro["tapa"] = urlencode(ruta_cover)
 
     return libros
 
