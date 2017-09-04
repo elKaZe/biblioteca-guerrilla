@@ -17,7 +17,7 @@ class progress_bar_loading(threading.Thread):
         print("[!] Generando la biblioteca")
         sys.stdout.flush()
         i = 0
-        while stop != True:
+        while stop is not True:
             msg_ = msg[:i] + msg[i].upper() + msg[i + 1:]
 
             sys.stdout.write('%s' % msg_)

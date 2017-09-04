@@ -7,9 +7,8 @@
 """
 
 """
-from flask import Flask, render_template, send_from_directory, url_for, redirect
-import jinja2
-import urllib
+from flask import Flask, render_template,\
+    send_from_directory, url_for, redirect
 
 
 from settings import RUTA_BASE_LIBROS
@@ -84,8 +83,6 @@ def filtrar_por_nombre(nombre_libro):
     libros = normalizar_libros(libros, conector)
     conector.desconectar()
     return libros
-
- # Miscelaneo
 
 
 def obtener_series_con_url():
