@@ -45,7 +45,7 @@ def filtrar_por_autor(autor):
     conector.conectar()
     # obtenemos los libros sin procesar
     libros = conector.obtener_por_autor(autor)
-    #Normalizamos la lista de libros
+    # Normalizamos la lista de libros
     libros = normalizar_libros(libros, conector)
     conector.desconectar()
     return libros
@@ -56,7 +56,7 @@ def filtrar_por_etiqueta(etiqueta):
     conector.conectar()
     # obtenemos los libros sin procesar
     libros = conector.obtener_por_etiqueta(etiqueta)
-    #Normalizamos la lista de libros
+    # Normalizamos la lista de libros
     libros = normalizar_libros(libros, conector)
     conector.desconectar()
     return libros
@@ -68,7 +68,7 @@ def filtrar_por_serie(serie):
     serie = urldecode(serie)
     # obtenemos los libros sin procesar
     libros = conector.obtener_por_serie(serie)
-    #Normalizamos la lista de libros
+    # Normalizamos la lista de libros
     libros = normalizar_libros(libros, conector)
     conector.desconectar()
     return libros
@@ -80,7 +80,7 @@ def filtrar_por_nombre(nombre_libro):
     conector.conectar()
     # obtenemos los libros sin procesar
     libros = conector.obtener_por_nombre(nombre_libro)
-    #Normalizamos la lista de libros
+    # Normalizamos la lista de libros
     libros = normalizar_libros(libros, conector)
     conector.desconectar()
     return libros
@@ -134,7 +134,9 @@ def obtener_autores_con_url():
     autores_crudo = conector.obtener_autores()
     for autor in autores_crudo:
         autor_safe = urlencode(autor)
-        url = url_for('vista_autor_especificado', nombre_autor=autor_safe)
+        url = url_for(
+            'vista_autor_especificado',
+            nombre_autor=autor_safe)
         autores.append({'url': url, 'elemento': autor})
 
     conector.desconectar()
@@ -160,10 +162,10 @@ def formatear_elementos_para_template(elementos):
 
 @app.route('/')
 def index():
-	return render_template('index.html',
-                        titulo="",
-                        filtros_generales=obtener_filtros()
-                        )
+    return render_template('index.html',
+                           titulo="",
+                           filtros_generales=obtener_filtros()
+                           )
 
 
 @app.route('/autor/<path:nombre_autor>/')
@@ -208,7 +210,7 @@ def redirect_serie():
     return redirect(url_for('vista_series'))
 
 
-@app.route('/etiqueta/<path:nombre_etiqueta>')
+@app.route('/etiqueta/<path:nombre_etiqueta>/')
 def vista_etiqueta_especificada(nombre_etiqueta):
     """Muestra los libros de una etiquea"""
     if not nombre_etiqueta:
@@ -220,7 +222,7 @@ def vista_etiqueta_especificada(nombre_etiqueta):
     return render_template("listado_de_libros.html",
                            libros=libros,
                            titulo=nombre_etiqueta,
-                           filtros_generales=obtener_filtros()
+                           filtros_generales=obtener_filtros(),
                            )
 
 
@@ -289,9 +291,8 @@ def vista_series():
                            )
 
 
-@app.route('/tapas/<string:ruta>')
+@app.route('/tapas/<path:ruta>')
 def devolver_tapa(ruta):
-    print(ruta)
     ruta_safe = urldecode(ruta)
     return send_from_directory(RUTA_BASE_LIBROS, ruta_safe)
 
@@ -302,6 +303,7 @@ def devolver_libro_descarga(ruta):
     return send_from_directory(RUTA_BASE_LIBROS, ruta_safe)
 
 
+# Habilita a usar esta funcion desde los templates
 @app.context_processor
 def utility_processor():
     return dict(urlencode=urlencode)
