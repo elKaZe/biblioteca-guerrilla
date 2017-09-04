@@ -3,7 +3,6 @@
 #
 # Distributed under terms of the GPLv3+ license.
 
-import sys
 import os
 import sqlite3
 import logging

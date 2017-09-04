@@ -4,7 +4,6 @@
 #
 # Distributed under terms of the GPLv3+ license.
 
-import os
 import unittest
 
 from app.dbprovider import ConectorABS

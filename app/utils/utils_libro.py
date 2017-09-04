@@ -19,8 +19,8 @@ def agregar_etiquetas(libros, conector):
     ej libro["formato"] -> -{'pdf': '/tmp/libro.pdf'}"""
 
     for libro in libros:
-        libro['etiquetas'] = conector.obtener_etiquetas_de_libro(
-            libro.get('id'))
+        etiquetas = conector.obtener_etiquetas_de_libro(libro.get("id", ''))
+        libro["etiquetas"] = etiquetas
     return libros
 
 
@@ -71,15 +71,6 @@ def simplificar_fecha(libros):
         # Obtengo el año de publicacion, que son los primeros 4 caracteres
         libro["fecha_publicacion"] = libro.get("fecha_publicacion", "")[:4]
 
-    return libros
-
-
-def agregar_etiquetas(libros, conector):
-    """Añade las etiquetas de un libro"""
-
-    for libro in libros:
-        etiquetas = conector.obtener_etiquetas_de_libro(libro.get("id", ''))
-        libro["etiquetas"] = etiquetas
     return libros
 
 
