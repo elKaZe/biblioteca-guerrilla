@@ -4,7 +4,6 @@
 #
 # Distributed under terms of the GPLv3+ license.
 
-import os
 import unittest
 
 from app.dbprovider import ConectorABS
@@ -98,4 +97,4 @@ class CalibreConnectorTestCase(unittest.TestCase):
 
 
 if __name__ == '__main__':
-        unittest.main()
+    unittest.main()
