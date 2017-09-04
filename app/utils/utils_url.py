@@ -13,13 +13,11 @@ Funciones para laburar con urls
 import urllib
 
 
-def urlencode(s):
-    s = urllib.parse.quote_plus(s)
+def urlencode(s, safe="/"):
+    s = urllib.parse.quote_plus(s, safe=safe)
     return s
 
 
 def urldecode(s):
     s = urllib.parse.unquote_plus(s)
     return s
-
-
