@@ -73,16 +73,19 @@ class Conector(ConectorABS):
         self.cursor.execute("""
         select distinct b.id, b.title, b.pubdate, b.path
         from books b,  authors a
-        where b.author_sort = a.sort and a.name = ?
-        order by b.title""", (autor,))
+        where b.author_sort like "%"||a.sort||"%" and a.name like  ?
+        order by b.title""", ("%" + autor + "%",))
 
         ret = []
+
         for registro in self.cursor.fetchall():
+            print(registro)
             ret.append({"id": registro[0],
                         "titulo": registro[1],
                         "fecha_publicacion": registro[2],
                         "ruta": registro[3],
                         })
+
         return ret
 
     def obtener_autores_de_libro(self, id_libro):
