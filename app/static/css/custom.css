@@ -2,3 +2,8 @@
     margin-top: 1rem;
     margin-bottom: 0rem !important;
 }
+
+.do-not-break{
+    word-break: keep-all !important;
+}
+
