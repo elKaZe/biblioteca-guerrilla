@@ -79,7 +79,6 @@ class Conector(ConectorABS):
         ret = []
 
         for registro in self.cursor.fetchall():
-            print(registro)
             ret.append({"id": registro[0],
                         "titulo": registro[1],
                         "fecha_publicacion": registro[2],
