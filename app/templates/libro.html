@@ -18,11 +18,11 @@
       <table class="table">
         <tbody>
           <tr>
-            <td><strong> Título: </strong>{{ libro.titulo|capitalize }}</td>
+            <td><strong> {{ _('Título') }}: </strong>{{ libro.titulo|capitalize }}</td>
             <td>
 
               {% if libro.etiquetas%}
-              <strong> Etiquetas: </strong>
+              <strong> {{ _('Etiquetas:') }} </strong>
               {% for etiqueta  in libro.etiquetas %}
               <a href={{ url_for('vista_etiqueta_especificada', nombre_etiqueta=etiqueta) }} >
                 <span class="tag is-danger">{{ etiqueta|capitalize }}</span>
@@ -32,7 +32,7 @@
             </td>
           </tr>
           <tr>
-            <td><strong> Autor: </strong>
+            <td><strong> {{ _('Autor:') }} </strong>
               {% for autor in libro.autores %}
               <a href={{ url_for('vista_autor_especificado', nombre_autor=autor ) }} >
               {{ autor}}
@@ -43,7 +43,7 @@
             <td>
 
               {% if libro.series%}
-              <strong> Colección: </strong>
+              <strong> {{ _('Colección:') }} </strong>
               {% for serie in libro.series%}
               <a href={{ url_for('vista_serie_especificada', nombre_serie=serie) }} >
                 <span class="tag is-warning">{{ serie|capitalize }}</span>
@@ -53,10 +53,10 @@
             </td>
           </tr>
           <tr>
-            <td><strong> Año de publicación: </strong>{{ libro.fecha_publicacion}}</td>
+            <td><strong> {{ _('Año de publicación:') }} </strong>{{ libro.fecha_publicacion}}</td>
           <td>
 
-            <strong> Descargar: </strong>
+            <strong> {{ _('Descargar:') }} </strong>
             {% for formato, ruta  in libro.formatos.items() %}
               <a href={{url_for('devolver_libro_descarga', ruta=ruta)}}>
               <span class="tag is-primary">{{ formato|upper}}</span>
@@ -67,7 +67,7 @@
         </tbody>
       </table>
     {% if libro.sinopsis %}
-    <strong> Sinopsis: </strong>
+    <strong> {{ _('Sinopsis:') }} </strong>
     <p style="text-align: justify;">
     {{ libro.sinopsis|safe}}
     </p>
