@@ -9,7 +9,8 @@
 """
 from flask import Flask, render_template,\
     send_from_directory, url_for, redirect
-
+from flask_babel import Babel
+from flask_babel import gettext as _
 
 from settings import RUTA_BASE_LIBROS
 from utils.utils_libro import normalizar_libros
@@ -19,6 +20,7 @@ from conector.dbprovider import instanciar_conector
 app = Flask('__name__')
 # Levantamos la config
 app.config.from_object("settings")
+babel = Babel(app)
 
 
 # Filtros
@@ -28,13 +30,13 @@ def obtener_filtros():
     """Filtros para la barra izquierda"""
     filtros = (
         {'url': url_for('vista_autores'),
-         'nombre': "Autores"},
+         'nombre': _("Autores")},
         {'url': url_for('vista_etiquetas'),
-         'nombre': "Categorias"},
+         'nombre': _("Categorias")},
         # {'url': url_for('idiomas'),
         # 'nombre': "Idiomas"},
         {'url': url_for('vista_series'),
-         'nombre': "Series"},
+         'nombre': _("Series")},
     )
     return filtros
 
