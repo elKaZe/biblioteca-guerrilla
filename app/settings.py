@@ -4,7 +4,7 @@
 #
 # Distributed under terms of the GPLv3+ license.
 
-CONECTOR = "app.conector.calibre"
+CONECTOR = "conector.calibre.calibre"
 CONECTOR_OPCIONES = {
     "ruta": "tests/data/biblioteca_calibre/metadata.db",
 }
