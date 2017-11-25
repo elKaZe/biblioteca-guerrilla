@@ -4,8 +4,11 @@
 #
 # Distributed under terms of the GPLv3+ license.
 
-CONECTOR = "app.conector.calibre"
+CONECTOR = "conector.calibre.calibre"
 CONECTOR_OPCIONES = {
-    "ruta": "tests/data/biblioteca_calibre/metadata.db",
+    "ruta": "tests/data/biblioteca_calibre2/metadata.db",
 }
-RUTA_BASE_LIBROS = "tests/data/biblioteca_calibre"
+RUTA_BASE_LIBROS = "tests/data/biblioteca_calibre2"
+
+SUPPORTED_LANGUAGES = {'es': 'Español', 'en': 'English'}
+BABEL_DEFAULT_LOCALE = "es"
