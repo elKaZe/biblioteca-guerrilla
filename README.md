@@ -8,8 +8,6 @@ y embeberlo en un router ( o cualquier dispositivo :D).
 ### ¿ y como funciona esto ?
 Actualmente la unica manera de genrar el catalogo es usando una biblioteca de [Calibre](https://calibre-ebook.com/),
 
-
-
 ### Mandale mecha!
 Asegurate que todos los libros tengan la portada generada, eso lo conseguis
 desde calibre, chequea las opciones de **modificar metadatos en masa**
@@ -27,6 +25,15 @@ cd app/
 python freeze.py
 ```
 dentro de **app/build/** tedremos la web.
+
+### ¿Como iniciar el server de pruebas?
+
+Ejecutamos el siguiente comando
+```
+./start_test_server.sh
+```
+
+Ingresamos a http://localhost:5000/ para ver el sitio
 
 ### ¡ Quiero colabrar !
 - Si encontras errores levantá un issue.
