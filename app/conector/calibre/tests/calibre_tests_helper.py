@@ -5,6 +5,29 @@
 import faker
 import tempfile
 import subprocess
+import epubaker
+
+# Library components to consider:
+#     colections -> (name)
+#     books ->(name, author, published, sinopsis, tags, formats, publishing
+#              house)
+
+def create_epub(**data):
+    """Create the ebook
+    :returns: Book object
+
+    """
+    book = epubaker.Epub3
+    book.metadata.append(
+            epubaker.Title= data.get("title"))
+    book.metadata.append(
+            epubaker.)
+    book = mkepub.Book(
+            title=data.get("title"),
+            authors=data.get("authors"))
+
+    book.save(data.get(path))
+    return book
 
 class CalibreTestsHelper(object):
 
@@ -22,6 +45,8 @@ class CalibreTestsHelper(object):
         # calibredb and specifies the library path
         self.base_command = ["calibredb", "--library-path",self.library_path]
 
+        self.faker = Faker()
+
     def _run_command(self, command):
         """Run specified command
 
@@ -38,6 +63,25 @@ class CalibreTestsHelper(object):
         command =  self.base_command
 
         _run_command(command)
+
+    def create_collection(self, ammount):
+        """Create a collection by the same authors
+
+        :ammount: integer - length of the collection
+        :returns: TODO
+
+        """
+        collection = []
+        author = self.faker.name() 
+        collection = self.faker.safe_color_name()
+
+        for b in ammount:
+            title = self.faker.job()
+            book = create_epub({"title":title,
+                                "author":author,
+                                "collection":collection_name})
+            collection_of_books.append()
+
 
 
 
