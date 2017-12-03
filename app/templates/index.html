@@ -2,50 +2,49 @@
 {% block content%}
 
 <div class="columns">
-  {% include "sidebar.html" %}
-  <div class="content column is-10">
-    <div class="title is-2">{{ titulo }}</div>
-    <div class="columns">
-      <div class="column is-half is-offset-one-quarter">
-        <p>
-        {{ _("""En la barra de la izquierda vas a encontrar categorias que organizan los libros.<br>
-        Para poder leer los libros te recomendamos las siguientes aplicaciones:""") }}
-        </p>
+    {% include "sidebar.html" %}
+    <div class="content column is-10">
+        <div class="title is-2">{{ titulo }}</div>
+        <div class="columns">
+            <div class="column is-half is-offset-one-quarter">
+                <p>
+                    {{ _("""On the left bar you will find the categories organising the books.<br>   To read the books we recommend the following applications:""") }}
+                </p>
 
-        <table class="table">
-          <thead>
-            <tr>
-              <th>
-                {{ _('Sistema') }}
-              </th>
-              <th>
-                {{ _('Aplicación') }}
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>
-                Android
-              </th>
-              <th>
-                <a href="https://f-droid.org/packages/org.coolreader/">Cool Reader</a>
-              </th>
-            </tr>
-            <tr>
-              <th>
-                GNU/Linux, win, mac
-              </th>
-              <th>
-                <a href="https://calibre-ebook.com/">Calibre</a>
-              </th>
-            </tr>
-          </tbody>
-        </table>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                {{ _('System') }}
+                            </th>
+                            <th>
+                                {{ _('Application') }}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>
+                                Android
+                            </th>
+                            <th>
+                                <a href="https://f-droid.org/packages/org.coolreader/">Cool Reader</a>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                GNU/Linux, win, mac
+                            </th>
+                            <th>
+                                <a href="https://calibre-ebook.com/">Calibre</a>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
 
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 {% endblock %}
