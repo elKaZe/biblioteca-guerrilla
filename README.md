@@ -19,7 +19,7 @@ CONECTOR_OPCIONES = {
     }
 RUTA_BASE_LIBROS = "ruta/a/la/bibliotecaDeCalibre/"
 ```
-generamos la web estatica:
+generamos la web estatica *es importante que te muevas al directorio _app_*:
 ```
 cd app/
 python freeze.py
@@ -37,9 +37,9 @@ Ingresamos a http://localhost:5000/ para ver el sitio
 
 ### ¡ Quiero colabrar !
 - Si encontras errores levantá un issue.
-- ¡Los parches son bienvenidos!
+- ¡Los parches son más que bienvenidos!
 - Si queres traducir entra
-[acá](https://translate.zanata.org/webtrans/translate?project=biblioteca_guerrilla)
+[acá](https://translate.zanata.org/project/view/biblioteca-guerrilla)
 
 ### ¿ Que licencia tiene ?
 GPLv3+, chequea el archivo [LICENCE](LICENCE)
