@@ -17,6 +17,44 @@
                 </article>
 
                 <article class="message is-dark">
+                    <div class="message-header">
+                        <p>{{ _('This node have:') }}</p>
+                    </div>
+                    <div class="message-body">
+                        <nav class="level">
+                            <div class="level-item has-text-centered">
+                                <div>
+                                    <p class="heading">
+                                        {{ _("""Books""") }}</p>
+                                    <p class="title">{{ stats.books }}</p>
+                                </div>
+                            </div>
+                            <div class="level-item has-text-centered">
+                                <div>
+                                    <p class="heading">
+                                        {{ _("""Series""") }}</p>
+                                    <p class="title">{{ stats.series }}</p>
+                                </div>
+                            </div>
+                            <div class="level-item has-text-centered">
+                                <div>
+                                    <p class="heading">
+                                        {{ _("""Authors""") }}</p>
+                                    <p class="title">{{ stats.authors }}</p>
+                                </div>
+                            </div>
+                            <div class="level-item has-text-centered">
+                                <div>
+                                    <p class="heading">
+                                        {{ _("""Categories""") }} </p>
+                                    <p class="title">{{ stats.categories}}</p>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </article>
+
+                <article class="message is-dark">
                     <div class="message-body">
                         <p>
                             {{ _("""To read the books we recommend the following applications:""") }}
