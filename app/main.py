@@ -30,13 +30,17 @@ def obtener_filtros():
     """Filtros para la barra izquierda"""
     filtros = (
         {'url': url_for('vista_autores'),
-         'nombre': _("Authors")},
+         'nombre': _("Authors"),
+         'iconclass': "fa fa-users"},
         {'url': url_for('vista_etiquetas'),
-         'nombre': _("Categories")},
+         'nombre': _("Categories"),
+         'iconclass': "fa fa-list"},
         # {'url': url_for('idiomas'),
-        # 'nombre': "Idiomas"},
+        # 'nombre': _("Langueges"),
+        # 'fa-icon-class': "fa fa-language"},
         {'url': url_for('vista_series'),
-         'nombre': _("Series")},
+         'nombre': _("Series"),
+         'iconclass': "fa fa-indent"},
     )
     return filtros
 
