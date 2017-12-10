@@ -47,18 +47,28 @@ def obtener_filtros():
     )
     return filtros
 
+def obtener_datos_administrador():
+    """Obtiene los datos del administrador del archivo de configuración
+    :returns: diccionario
+
+    """
+    admin_data = {
+            'name': app.config.get("ADMIN_NAME", _("Not setted")),
+            'email': app.config.get("ADMIN_EMAIL", _("Not setted")),
+                }
+    return admin_data
+
 def obtener_estadisticas():
     """Obtiene la candiad de libros, series, categorias y autores
     :returns: diccionario 
 
     """
 
-    stats = (
-            {'authors': len(filtrar_por_autor()),
+    stats = {'authors': len(filtrar_por_autor()),
              'categories': len(filtrar_por_etiqueta()),
              'books': len(obtener_todos_los_libros()),
              'series': len(filtrar_por_serie()),
-            })
+            }
 
     return stats
 
@@ -200,6 +210,7 @@ def index():
                            titulo="",
                            filtros_generales=obtener_filtros(),
                            stats=obtener_estadisticas(),
+                           admin=obtener_datos_administrador(),
                            )
 
 @app.route('/libros/')
