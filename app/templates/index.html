@@ -7,41 +7,54 @@
         <div class="title is-2">{{ titulo }}</div>
         <div class="columns">
             <div class="column is-half is-offset-one-quarter">
-                <p>
-                    {{ _("""On the left bar you will find the categories organising the books.<br>   To read the books we recommend the following applications:""") }}
-                </p>
+                <article class="message is-dark">
+                    <div class="message-header">
+                        <p>{{ _('Welcome!') }}</p>
+                    </div>
+                    <div class="message-body">
+                        {{ _("""On the left bar you will find the categories organising the books.""") }}
+                    </div>
+                </article>
 
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>
-                                {{ _('System') }}
-                            </th>
-                            <th>
-                                {{ _('Application') }}
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th>
-                                Android
-                            </th>
-                            <th>
-                                <a href="https://f-droid.org/packages/org.coolreader/">Cool Reader</a>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>
-                                GNU/Linux, win, mac
-                            </th>
-                            <th>
-                                <a href="https://calibre-ebook.com/">Calibre</a>
-                            </th>
-                        </tr>
-                    </tbody>
-                </table>
+                <article class="message is-dark">
+                    <div class="message-body">
+                        <p>
+                            {{ _("""To read the books we recommend the following applications:""") }}
+                        </p>
 
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        {{ _('System') }}
+                                    </th>
+                                    <th>
+                                        {{ _('Application') }}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        Android
+                                    </th>
+                                    <th>
+                                        <a href="https://f-droid.org/packages/org.coolreader/">Cool Reader</a>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        GNU/Linux, win, mac
+                                    </th>
+                                    <th>
+                                        <a href="https://calibre-ebook.com/">Calibre</a>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </article>
             </div>
         </div>
     </div>
