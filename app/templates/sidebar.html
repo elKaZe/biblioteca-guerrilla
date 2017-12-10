@@ -2,7 +2,7 @@
   <div>
     <div class="main">
       {% for filtro in filtros_generales %}
-      <a href="{{ filtro.url }}" class="item"><span class="icon"><i class="fa fa-folder-o"></i></span><span class="name">{{ filtro.nombre|capitalize }}</span></a>
+      <a href="{{ filtro.url }}" class="item"><span class="icon"><i class="{{filtro.iconclass}}"></i></span><span class="name">{{ filtro.nombre|capitalize }}</span></a>
       {% endfor %}
     </div>
   </div>
