@@ -21,7 +21,7 @@
 <div class="columns">
   {% include "sidebar.html" %}
   <div class="content column is-10">
-    <div class="title">{{ titulo }}</div>
+    <div class="title">{{ titulo|capitalize }}</div>
     <div class="columns is-multiline files">
       {{ genera_columnas(libros) }}
     </div>
