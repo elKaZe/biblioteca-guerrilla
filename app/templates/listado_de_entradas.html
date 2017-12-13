@@ -23,7 +23,7 @@
   {% include "sidebar.html" %}
   <!--a la derecha del sidebar-->
   <div class="column is-10 content">
-    <div class="title">{{ titulo }}</div>
+    <div class="title">{{ titulo|capitalize }}</div>
     <div class="columns is-multiline files">
       {{ genera_lista(entradas) }}
       <!--Columnas-->
