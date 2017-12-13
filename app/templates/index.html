@@ -7,41 +7,107 @@
         <div class="title is-2">{{ titulo }}</div>
         <div class="columns">
             <div class="column is-half is-offset-one-quarter">
-                <p>
-                    {{ _("""On the left bar you will find the categories organising the books.<br>   To read the books we recommend the following applications:""") }}
-                </p>
+                <article class="message is-dark">
+                    <div class="message-header">
+                        <p>{{ _('Welcome!') }}</p>
+                    </div>
+                    <div class="message-body">
+                        {{ _("""On the left bar you will find the categories organising the books.""") }}
+                    </div>
+                </article>
 
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>
-                                {{ _('System') }}
-                            </th>
-                            <th>
-                                {{ _('Application') }}
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th>
-                                Android
-                            </th>
-                            <th>
-                                <a href="https://f-droid.org/packages/org.coolreader/">Cool Reader</a>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>
-                                GNU/Linux, win, mac
-                            </th>
-                            <th>
-                                <a href="https://calibre-ebook.com/">Calibre</a>
-                            </th>
-                        </tr>
-                    </tbody>
-                </table>
+                <article class="message is-dark">
+                    <div class="message-header">
+                        <p>{{ _('This node has:') }}</p>
+                    </div>
+                    <div class="message-body">
+                        <nav class="level">
+                            <div class="level-item has-text-centered">
+                                <div>
+                                    <p class="heading">
+                                        {{ _("""Books""") }}</p>
+                                    <p class="title">{{ stats.books }}</p>
+                                </div>
+                            </div>
+                            <div class="level-item has-text-centered">
+                                <div>
+                                    <p class="heading">
+                                        {{ _("""Series""") }}</p>
+                                    <p class="title">{{ stats.series }}</p>
+                                </div>
+                            </div>
+                            <div class="level-item has-text-centered">
+                                <div>
+                                    <p class="heading">
+                                        {{ _("""Authors""") }}</p>
+                                    <p class="title">{{ stats.authors }}</p>
+                                </div>
+                            </div>
+                            <div class="level-item has-text-centered">
+                                <div>
+                                    <p class="heading">
+                                        {{ _("""Categories""") }} </p>
+                                    <p class="title">{{ stats.categories}}</p>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </article>
 
+                <article class="message is-dark">
+                    <div class="message-body">
+                        <p>
+                            {{ _("""To read the books we recommend the following applications:""") }}
+                        </p>
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        {{ _('System') }}
+                                    </th>
+                                    <th>
+                                        {{ _('Application') }}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        Android
+                                    </th>
+                                    <th>
+                                        <a href="https://f-droid.org/packages/org.coolreader/">Cool Reader</a>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        GNU/Linux, win, mac
+                                    </th>
+                                    <th>
+                                        <a href="https://calibre-ebook.com/">Calibre</a>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+                <article class="message is-dark">
+                    <div class="message-header">
+                        <p>{{ _('Run you own node:') }}</p>
+                    </div>
+                    <div class="message-body">
+                        <p>
+                            {{_("""Hey! do you like the idea?""") }}
+                            <br>
+                            {{ _("""Run your own node is very cheap and easy, you must have a router, a Raspberry PI or even a computer.""") }}
+                            <br>
+                            {{ _("""Talk with the admin ( %(name)s ) of this node or send him/her an <a href='mailto:%(email)s'>E-mail </a>.""", name=admin.name, email=admin.email) }}
+                            <br><br>
+                            {{ _("""If you have suggestions, ideas, complains or something else, you can send an E-mail to the author, his address is down here in the footer.""")}}
+                            </p>
+                    </div>
+                </article>
             </div>
         </div>
     </div>
