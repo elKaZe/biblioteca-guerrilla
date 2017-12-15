@@ -32,7 +32,7 @@ class Conector(ConectorABS):
     def desconectar(self):
         try:
             self.con.disconnect()
-        except:
+        except BaseException:
             pass
 
     def obtener_todos(self):
