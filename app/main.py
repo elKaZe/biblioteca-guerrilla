@@ -47,20 +47,22 @@ def obtener_filtros():
     )
     return filtros
 
+
 def obtener_datos_administrador():
     """Obtiene los datos del administrador del archivo de configuración
     :returns: diccionario
 
     """
     admin_data = {
-            'name': app.config.get("ADMIN_NAME", _("Not setted")),
-            'email': app.config.get("ADMIN_EMAIL", _("Not setted")),
-                }
+        'name': app.config.get("ADMIN_NAME", _("Not set")),
+        'email': app.config.get("ADMIN_EMAIL", _("Not set")),
+    }
     return admin_data
+
 
 def obtener_estadisticas():
     """Obtiene la candiad de libros, series, categorias y autores
-    :returns: diccionario 
+    :returns: diccionario
 
     """
 
@@ -68,7 +70,7 @@ def obtener_estadisticas():
              'categories': len(filtrar_por_etiqueta()),
              'books': len(obtener_todos_los_libros()),
              'series': len(filtrar_por_serie()),
-            }
+             }
 
     return stats
 
@@ -118,6 +120,7 @@ def filtrar_por_nombre(nombre_libro=""):
     conector.desconectar()
     return libros
 
+
 def obtener_todos_los_libros():
     """Obtiene todos los libros y los normaliza
     :returns: lista
@@ -131,6 +134,7 @@ def obtener_todos_los_libros():
     libros = normalizar_libros(libros, conector)
     conector.desconectar()
     return libros
+
 
 def obtener_series_con_url():
     """Devuelve una lista con todos los series"""
@@ -212,6 +216,7 @@ def index():
                            stats=obtener_estadisticas(),
                            admin=obtener_datos_administrador(),
                            )
+
 
 @app.route('/libros/')
 def vista_todos_los_libros():
