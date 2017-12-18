@@ -1,9 +1,32 @@
 <!--Incluye menu cuando la pantalla es chica-->
 
 <nav class="navbar is-dark has-shadow" id="top" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-      <a class="navbar-item" href="{{ url_for("index") }}">
-        <p><strong>Biblioteca Guerrilla</strong></p>
-      </a>
+  <div class="navbar-brand">
+    <a class="navbar-item" href="{{ url_for("index") }}">
+      <p><strong>Biblioteca Guerrilla</strong></p>
+    </a>
+  </div>
+
+  <div class="navbar-menu">
+    <div class="navbar-start">
+    </div>
+
+    {% if idiomas %}
+    <div class="navbar-end">
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link  is-active" href="#">
+          {{_("Languages")}}
+        </a>
+        <div class="navbar-dropdown ">
+          {% for values in idiomas.values() %}
+          <a class="navbar-item " href="{{values.url}}">
+            {{ values.nombre|capitalize }}
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
   </div>
 </nav>
