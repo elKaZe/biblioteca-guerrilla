@@ -8,7 +8,6 @@
 import unittest
 
 
-
 def setUpModule():
     pass
 
@@ -20,7 +19,6 @@ def tearDownModule():
 class TestCalibre(unittest.TestCase):
 
     """Unittest."""
-
 
     def setUp(self):
         """Method to prepare the test fixture. Run BEFORE the test methods."""
@@ -45,11 +43,17 @@ class TestCalibre(unittest.TestCase):
         pass  # Probably you may not use this one. See tearDown().
 
     @unittest.skip("Demonstrating skipping")  # Skips this test only
-    @unittest.skipIf("boolean_condition", "Reason to Skip Test here.")  # Skips this test only
-    @unittest.skipUnless("boolean_condition", "Reason to Skip Test here.")  # Skips this test only
-    @unittest.expectedFailure  # This test MUST fail. If test fails, then is Ok.
+    @unittest.skipIf(
+        "boolean_condition",
+        "Reason to Skip Test here.")  # Skips this test only
+    @unittest.skipUnless(
+        "boolean_condition",
+        "Reason to Skip Test here.")  # Skips this test only
+    # This test MUST fail. If test fails, then is Ok.
+    @unittest.expectedFailure
     def test_dummy(self):
-        self.skipTest("Just examples, use as template!.")  # Skips this test only
+        # Skips this test only
+        self.skipTest("Just examples, use as template!.")
         self.assertEqual(a, b)  # a == b
         self.assertNotEqual(a, b)  # a != b
         self.assertTrue(x)  # bool(x) is True
@@ -70,9 +74,13 @@ class TestCalibre(unittest.TestCase):
         self.assertLessEqual(a, b)  # a <= b
         self.assertRegex(s, r)  # r.search(s)
         self.assertNotRegex(s, r)  # not r.search(s)
-        self.assertItemsEqual(a, b)  # sorted(a) == sorted(b) and works with unhashable objs
-        self.assertDictContainsSubset(a, b)  # all the key/value pairs in a exist in b
-        self.assertCountEqual(a, b)  # a and b have the same elements in the same number, regardless of their order
+        # sorted(a) == sorted(b) and works with unhashable objs
+        self.assertItemsEqual(a, b)
+        # all the key/value pairs in a exist in b
+        self.assertDictContainsSubset(a, b)
+        # a and b have the same elements in the same number, regardless of
+        # their order
+        self.assertCountEqual(a, b)
         # Compare different types of objects
         self.assertMultiLineEqual(a, b)  # Compare strings
         self.assertSequenceEqual(a, b)  # Compare sequences
@@ -81,17 +89,20 @@ class TestCalibre(unittest.TestCase):
         self.assertSetEqual(a, b)  # Compare sets
         self.assertDictEqual(a, b)  # Compare dicts
         # To Test code that MUST Raise Exceptions:
-        self.assertRaises(SomeException, callable, *args, **kwds)  # callable Must raise SomeException
+        # callable Must raise SomeException
+        self.assertRaises(SomeException, callable, *args, **kwds)
         with self.assertRaises(SomeException) as cm:
-            do_something_that_raises() # This line  Must raise SomeException
+            do_something_that_raises()  # This line  Must raise SomeException
         # To Test code that MUST Raise Warnings (see std lib warning module):
-        self.assertWarns(SomeWarning, callable, *args, **kwds)  # callable Must raise SomeWarning
+        # callable Must raise SomeWarning
+        self.assertWarns(SomeWarning, callable, *args, **kwds)
         with self.assertWarns(SomeWarning) as cm:
-            do_something_that_warns() # This line  Must raise SomeWarning
+            do_something_that_warns()  # This line  Must raise SomeWarning
         # Assert messages on a Logger log object.
         self.assertLogs(logger, level)
         with self.assertLogs('foo', level='INFO') as cm:
-            logging.getLogger('foo').info('example message')  # cm.output is 'example message'
+            # cm.output is 'example message'
+            logging.getLogger('foo').info('example message')
 
 
 if __name__.__contains__("__main__"):

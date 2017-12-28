@@ -4,15 +4,15 @@
 #
 # Distributed under terms of the GPLv3+ license.
 
-import unittest
-
-from app.dbprovider import ConectorABS
-from app.conector.calibre import Conector
-
 """
 Test para  el conector de calibre
 
 """
+
+import unittest
+
+from app.conector.calibre import Conector
+from app.dbprovider import ConectorABS
 
 
 class CalibreConnectorTestCase(unittest.TestCase):
