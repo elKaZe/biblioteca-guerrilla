@@ -3,9 +3,10 @@
 #
 # Distributed under terms of the GPLv3+ license.
 
+import logging
 import os
 import sqlite3
-import logging
+
 from conector.dbprovider import ConectorABS
 
 
@@ -32,7 +33,7 @@ class Conector(ConectorABS):
     def desconectar(self):
         try:
             self.con.disconnect()
-        except:
+        except BaseException:
             pass
 
     def obtener_todos(self):
