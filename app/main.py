@@ -7,15 +7,14 @@
 """
 
 """
-from flask import Flask, render_template,\
-    send_from_directory, url_for, redirect
-from flask_babel import Babel
+from conector.dbprovider import instanciar_conector
+from flask import (Flask, redirect, render_template, send_from_directory,
+                   url_for)
 from flask_babel import gettext as _
-
+from flask_babel import Babel
 from settings import RUTA_BASE_LIBROS
 from utils.utils_libro import normalizar_libros
-from utils.utils_url import urlencode, urldecode
-from conector.dbprovider import instanciar_conector
+from utils.utils_url import urldecode, urlencode
 
 app = Flask('__name__')
 # Levantamos la config

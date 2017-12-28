@@ -1,13 +1,15 @@
+# -*- coding: utf-8 -*-
+import sys
+import threading
+import time
+
+import main
 from flask_frozen import Freezer
 
-import sys
-import time
-import threading
-import main
 freezer = Freezer(main.app)
 
 
-class progress_bar_loading(threading.Thread):
+class ProgressBarLoading(threading.Thread):
 
     def run(self):
         global stop
@@ -38,7 +40,7 @@ class progress_bar_loading(threading.Thread):
 if __name__ == '__main__':
     kill = False
     stop = False
-    p = progress_bar_loading()
+    p = ProgressBarLoading()
     p.start()
 
     try:

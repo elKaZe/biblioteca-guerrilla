@@ -5,13 +5,14 @@
 #
 # Distributed under terms of the GPLv3+ license.
 
-import os
-from .utils_url import urlencode
-
 """
 Funciones que laburan con los libros
 
 """
+
+import os
+
+from .utils_url import urlencode
 
 
 def agregar_etiquetas(libros, conector):
