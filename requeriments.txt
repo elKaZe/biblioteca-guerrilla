@@ -8,3 +8,6 @@ MarkupSafe==1.0
 visitor==0.1.3
 Werkzeug==0.12.2
 Flask-Babel==0.11.2
+pre-commit
+isort
+prospector
