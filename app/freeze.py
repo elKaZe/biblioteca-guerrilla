@@ -50,3 +50,5 @@ if __name__ == '__main__':
     except KeyboardInterrupt or EOFError:
         kill = True
         stop = True
+
+    print("Generado en: " + main.app.config.get("FREEZER_DESTINATION"))

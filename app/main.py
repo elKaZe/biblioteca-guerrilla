@@ -28,19 +28,53 @@ babel = Babel(app)
 def obtener_filtros():
     """Filtros para la barra izquierda"""
     filtros = (
+        {'url': url_for('vista_todos_los_libros'),
+         'nombre': _("Books"),
+         'iconclass': "fa fa-book"},
         {'url': url_for('vista_autores'),
-         'nombre': _("Autores")},
+         'nombre': _("Authors"),
+         'iconclass': "fa fa-users"},
         {'url': url_for('vista_etiquetas'),
-         'nombre': _("Categorias")},
+         'nombre': _("Categories"),
+         'iconclass': "fa fa-list"},
         # {'url': url_for('idiomas'),
-        # 'nombre': "Idiomas"},
+        # 'nombre': _("Langueges"),
+        # 'fa-icon-class': "fa fa-language"},
         {'url': url_for('vista_series'),
-         'nombre': _("Series")},
+         'nombre': _("Series"),
+         'iconclass': "fa fa-indent"},
     )
     return filtros
 
 
-def filtrar_por_autor(autor):
+def obtener_datos_administrador():
+    """Obtiene los datos del administrador del archivo de configuración
+    :returns: diccionario
+
+    """
+    admin_data = {
+        'name': app.config.get("ADMIN_NAME", _("Not set")),
+        'email': app.config.get("ADMIN_EMAIL", _("Not set")),
+    }
+    return admin_data
+
+
+def obtener_estadisticas():
+    """Obtiene la candiad de libros, series, categorias y autores
+    :returns: diccionario
+
+    """
+
+    stats = {'authors': len(filtrar_por_autor()),
+             'categories': len(filtrar_por_etiqueta()),
+             'books': len(obtener_todos_los_libros()),
+             'series': len(filtrar_por_serie()),
+             }
+
+    return stats
+
+
+def filtrar_por_autor(autor=""):
     conector = instanciar_conector()
     conector.conectar()
     # obtenemos los libros sin procesar
@@ -51,7 +85,7 @@ def filtrar_por_autor(autor):
     return libros
 
 
-def filtrar_por_etiqueta(etiqueta):
+def filtrar_por_etiqueta(etiqueta=""):
     conector = instanciar_conector()
     conector.conectar()
     # obtenemos los libros sin procesar
@@ -62,7 +96,7 @@ def filtrar_por_etiqueta(etiqueta):
     return libros
 
 
-def filtrar_por_serie(serie):
+def filtrar_por_serie(serie=""):
     conector = instanciar_conector()
     conector.conectar()
     serie = urldecode(serie)
@@ -74,12 +108,27 @@ def filtrar_por_serie(serie):
     return libros
 
 
-def filtrar_por_nombre(nombre_libro):
+def filtrar_por_nombre(nombre_libro=""):
     """Filtra por el nombre del libro"""
     conector = instanciar_conector()
     conector.conectar()
     # obtenemos los libros sin procesar
     libros = conector.obtener_por_nombre(nombre_libro)
+    # Normalizamos la lista de libros
+    libros = normalizar_libros(libros, conector)
+    conector.desconectar()
+    return libros
+
+
+def obtener_todos_los_libros():
+    """Obtiene todos los libros y los normaliza
+    :returns: lista
+
+    """
+    conector = instanciar_conector()
+    conector.conectar()
+    # obtenemos los libros sin procesar
+    libros = conector.obtener_todos()
     # Normalizamos la lista de libros
     libros = normalizar_libros(libros, conector)
     conector.desconectar()
@@ -162,6 +211,20 @@ def formatear_elementos_para_template(elementos):
 def index():
     return render_template('index.html',
                            titulo="",
+                           filtros_generales=obtener_filtros(),
+                           stats=obtener_estadisticas(),
+                           admin=obtener_datos_administrador(),
+                           )
+
+
+@app.route('/libros/')
+def vista_todos_los_libros():
+    """Muestra los libros"""
+    libros = obtener_todos_los_libros()
+
+    return render_template("listado_de_libros.html",
+                           libros=libros,
+                           titulo=_("All books:"),
                            filtros_generales=obtener_filtros()
                            )
 
