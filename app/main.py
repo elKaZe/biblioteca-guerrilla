@@ -22,12 +22,31 @@ app = Flask('__name__')
 app.config.from_object("settings")
 babel = Babel(app)
 
+@babel.localeselector
+def set_locale(lang=""):
+    return lang
+
+def obtener_idiomas_aplicacion():
+    """Obtiene los idiomas habilitados para la aplicacion
+    :returns: diccionario de diccionarios
+
+    """
+    url_formato = "/language/{}"
+    idiomas = {}
+    supported_languages = app.config.get("SUPPORTED_LANGUAGES")
+    for acronimo, nombre in supported_languages.items():
+        idiomas[acronimo] = {'nombre': nombre,
+                            'url': url_formato.format(acronimo),
+                           }
+
+    return idiomas
 
 # Filtros
 
 
 def obtener_filtros():
     """Filtros para la barra izquierda"""
+    import ipdb; ipdb.set_trace()
     filtros = (
         {'url': url_for('vista_todos_los_libros'),
          'nombre': _("Books"),
@@ -208,13 +227,18 @@ def formatear_elementos_para_template(elementos):
 # Vistas
 
 
+# @app.route('/<lang>/')
 @app.route('/')
 def index():
+    # if lang:
+    #     set_locale()
+        # from flask.ext.babelex import refresh; refresh()
     return render_template('index.html',
                            titulo="",
                            filtros_generales=obtener_filtros(),
                            stats=obtener_estadisticas(),
                            admin=obtener_datos_administrador(),
+                           idiomas=obtener_idiomas_aplicacion(),
                            )
 
 
@@ -363,6 +387,19 @@ def devolver_tapa(ruta):
 def devolver_libro_descarga(ruta):
     ruta_safe = urldecode(ruta)
     return send_from_directory(RUTA_BASE_LIBROS, ruta_safe)
+
+
+@app.route('/language/<language>')
+def set_language(language=None):
+    # set up language
+    set_locale(language)
+    # return redirect(url_for('index', lang=language))
+    return redirect(url_for('index'))
+
+
+
+
+
 
 
 # Habilita a usar esta funcion desde los templates

@@ -21,5 +21,5 @@ FREEZER_DESTINATION = "/tmp/biblioteca-guerrilla/"
 FREEZER_RELATIVE_URLS = False
 
 # Languages
-SUPPORTED_LANGUAGES = {'es': 'Español', 'en': 'English'}
-BABEL_DEFAULT_LOCALE = "es"
+SUPPORTED_LANGUAGES = {'es_AR': 'Español', 'en': 'English'}
+BABEL_DEFAULT_LOCALE = "en"
