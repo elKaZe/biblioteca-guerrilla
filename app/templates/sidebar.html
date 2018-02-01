@@ -1,4 +1,13 @@
-<aside class="column is-2 aside hero is-fullheight is-hidden-mobile">
+<aside class="column is-2 aside hero is-fullheight is-desktop is-hidden-mobile">
+  <div>
+    <div class="main">
+      {% for filtro in filtros_generales %}
+      <a href="{{ filtro.url }}" class="item"><span class="icon"><i class="{{filtro.iconclass}}"></i></span><span class="name">{{ filtro.nombre|capitalize }}</span></a>
+      {% endfor %}
+    </div>
+  </div>
+</aside>
+<aside class="column aside hero is-mobile is-hidden-desktop">
   <div>
     <div class="main">
       {% for filtro in filtros_generales %}
