@@ -4,22 +4,28 @@
 #
 # Distributed under terms of the GPLv3+ license.
 #
+#
+import os
+
+PROJECT_PATH = os.path.split(os.path.dirname(os.path.realpath(__file__)))[0]
+
 
 # Admin data
 ADMIN_NAME = "kaze"
-ADMIN_EMAIL = "kaze@partidopirata.com.ar"
+ADMIN_EMAIL = "kaze@rlab.be"
 
 # Connector
 CONECTOR = "conector.calibre.calibre"
 CONECTOR_OPCIONES = {
-    "ruta": "tests/data/biblioteca_calibre2/metadata.db",
+    "ruta": os.path.realpath(PROJECT_PATH+'/tests/data/\
+biblioteca_calibre2/metadata.db'),
 }
-RUTA_BASE_LIBROS = "tests/data/biblioteca_calibre2"
+RUTA_BASE_LIBROS = os.path.realpath(PROJECT_PATH+'/tests/data/\
+biblioteca_calibre2/')
 
 # Frozen-Flask
 FREEZER_DESTINATION = "/tmp/biblioteca-guerrilla/"
 FREEZER_RELATIVE_URLS = False
 
 # Languages
-SUPPORTED_LANGUAGES = {'es': 'Español', 'en': 'English'}
-BABEL_DEFAULT_LOCALE = "es"
+BABEL_DEFAULT_LOCALE = "en"
