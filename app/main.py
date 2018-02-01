@@ -361,7 +361,7 @@ def devolver_tapa(ruta):
 @app.route('/archivo/<path:ruta>')
 def devolver_libro_descarga(ruta):
     ruta_safe = urldecode(ruta)
-    return send_from_directory(RUTA_BASE_LIBROS, ruta_safe)
+    return send_from_directory(RUTA_BASE_LIBROS, ruta_safe, as_attachment=True)
 
 
 # Habilita a usar esta funcion desde los templates
