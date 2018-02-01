@@ -66,9 +66,9 @@ def obtener_estadisticas():
     """
 
     stats = {'authors': len(filtrar_por_autor()),
-             'categories': len(filtrar_por_etiqueta()),
+             'categories': len(obtener_etiquetas_con_url()),
              'books': len(obtener_todos_los_libros()),
-             'series': len(filtrar_por_serie()),
+             'series': len(obtener_series_con_url()),
              }
 
     return stats
