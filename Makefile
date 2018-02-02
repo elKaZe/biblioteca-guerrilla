@@ -91,3 +91,10 @@ start-test-server: clean ## runs tests server to see what the app generates
 
 generate-static-website: clean ## generate the static website
 	cd biblioteca_guerrilla/app; python freeze.py
+
+babel-extract-messages: ## extracts strings from code to translate
+	pybabel  extract --project='Biblioteca Guerrilla' --sort-by-file  -F babel.cfg  -o  messages/messages.pot biblioteca_guerrilla/app/
+
+babel-compile-translations: ## compile translations
+	pybabel compile -f -d biblioteca_guerrilla/app/translations
+
