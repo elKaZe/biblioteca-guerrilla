@@ -17,13 +17,13 @@ from utils.utils_libro import normalizar_libros
 from utils.utils_url import urldecode, urlencode
 
 app = Flask('__name__')
+
 # Levantamos la config
 app.config.from_object("settings")
 babel = Babel(app)
 
 
 # Filtros
-
 
 def obtener_filtros():
     """Filtros para la barra izquierda"""
@@ -318,7 +318,7 @@ def vista_autores():
 
     return render_template("listado_de_entradas.html",
                            entradas=autores,
-                           titulo="Autores",
+                           titulo=_("Authors"),
                            filtros_generales=obtener_filtros(),
                            path='autor'
                            )
@@ -332,7 +332,7 @@ def vista_etiquetas():
 
     return render_template("listado_de_entradas.html",
                            entradas=etiquetas,
-                           titulo="Categorias",
+                           titulo=_("Categories"),
                            filtros_generales=obtener_filtros(),
                            path='etiquetas'
                            )
@@ -346,7 +346,7 @@ def vista_series():
 
     return render_template("listado_de_entradas.html",
                            entradas=series,
-                           titulo="Series",
+                           titulo=_("Series"),
                            filtros_generales=obtener_filtros(),
                            path='series'
                            )
@@ -368,3 +368,4 @@ def devolver_libro_descarga(ruta):
 @app.context_processor
 def utility_processor():
     return dict(urlencode=urlencode)
+
