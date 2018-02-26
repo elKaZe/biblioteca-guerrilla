@@ -1,9 +1,12 @@
 <!--Incluye menu cuando la pantalla es chica-->
 
 <nav class="navbar is-dark has-shadow" id="top" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-      <a class="navbar-item" href="{{ url_for("index") }}">
-        <p><strong>Biblioteca Guerrilla</strong></p>
-      </a>
+  <div class="navbar-brand">
+    <figure class="image is-64x64">
+      <img src="/static/img/logo-alpha.png">
+    </figure>
+    <a class="navbar-item" href="{{ url_for("index") }}">
+      <p><strong>Biblioteca Guerrilla</strong></p>
+    </a>
   </div>
 </nav>
