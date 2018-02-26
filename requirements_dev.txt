@@ -1,0 +1,10 @@
+bumpversion==0.5.3
+coverage==4.1
+cryptography==1.7
+flake8==2.6.0
+pip==8.1.2
+PyYAML==3.11
+Sphinx==1.4.8
+tox==2.3.1
+watchdog==0.8.3
+wheel==0.29.0
