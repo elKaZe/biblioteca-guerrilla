@@ -368,4 +368,3 @@ def devolver_libro_descarga(ruta):
 @app.context_processor
 def utility_processor():
     return dict(urlencode=urlencode)
-
