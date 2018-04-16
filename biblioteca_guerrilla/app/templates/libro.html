@@ -4,76 +4,76 @@
 
 
 <div class="columns">
-  {% include "sidebar.html" %}
-  <div class="content column is-10">
-    <div class="title is-2">{{ titulo }}</div>
-    <div class="columns" style="margin-top: 0.75rem;">
-      <div class="column is-one-third">
-        <div class="image is-420x640">
-          <img src={{ url_for('devolver_tapa', ruta=libro.tapa) }}>
-      </div>
-      </div>
+    {% include "sidebar.html" %}
+    <div class="content column is-10">
+        <div class="title is-2">{{ titulo }}</div>
+        <div class="columns" style="margin-top: 0.75rem;">
+            <div class="column is-one-third">
+                <div class="image is-420x640">
+                    <img src={{ url_for('devolver_tapa', ruta=libro.tapa) }} alt="{{ _('Book cover') }}">
+                </div>
+            </div>
 
-    <div class="column">
-      <table class="table">
-        <tbody>
-          <tr>
-            <td><strong> {{ _('Title') }}: </strong>{{ libro.titulo|capitalize }}</td>
-            <td>
+            <div class="column">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td><strong> {{ _('Title') }}: </strong>{{ libro.titulo|capitalize }}</td>
+                            <td>
 
-              {% if libro.etiquetas%}
-              <strong> {{ _('Labels:') }} </strong>
-              {% for etiqueta  in libro.etiquetas %}
-              <a href={{ url_for('vista_etiqueta_especificada', nombre_etiqueta=etiqueta) }} >
-                <span class="tag is-danger">{{ etiqueta|capitalize }}</span>
-              </a>
-              {% endfor %}
-              {% endif %}
-            </td>
-          </tr>
-          <tr>
-            <td><strong> {{ _('Author:') }} </strong>
-              {% for autor in libro.autores %}
-              <a href={{ url_for('vista_autor_especificado', nombre_autor=autor ) }} >
-              {{ autor}}
-              </a>
-              {% endfor %}
+                                {% if libro.etiquetas%}
+                                <strong> {{ _('Labels:') }} </strong>
+                                {% for etiqueta  in libro.etiquetas %}
+                                <a href={{ url_for('vista_etiqueta_especificada', nombre_etiqueta=etiqueta) }} >
+                                    <span class="tag is-danger">{{ etiqueta|capitalize }}</span>
+                                </a>
+                                {% endfor %}
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong> {{ _('Author:') }} </strong>
+                                {% for autor in libro.autores %}
+                                <a href={{ url_for('vista_autor_especificado', nombre_autor=autor ) }} >
+                                    {{ autor}}
+                                </a>
+                                {% endfor %}
 
-            </td>
-            <td>
+                            </td>
+                            <td>
 
-              {% if libro.series%}
-              <strong> {{ _('Collection:') }} </strong>
-              {% for serie in libro.series%}
-              <a href={{ url_for('vista_serie_especificada', nombre_serie=serie) }} >
-                <span class="tag is-warning">{{ serie|capitalize }}</span>
-              </a>
-              {% endfor %}
-              {% endif %}
-            </td>
-          </tr>
-          <tr>
-            <td><strong> {{ _('Year of publication:') }} </strong>{{ libro.fecha_publicacion}}</td>
-          <td>
+                                {% if libro.series%}
+                                <strong> {{ _('Collection:') }} </strong>
+                                {% for serie in libro.series%}
+                                <a href={{ url_for('vista_serie_especificada', nombre_serie=serie) }} >
+                                    <span class="tag is-warning">{{ serie|capitalize }}</span>
+                                </a>
+                                {% endfor %}
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong> {{ _('Year of publication:') }} </strong>{{ libro.fecha_publicacion}}</td>
+                            <td>
 
-            <strong> {{ _('Download:') }} </strong>
-            {% for formato, ruta  in libro.formatos.items() %}
-              <a href={{url_for('devolver_libro_descarga', ruta=ruta)}}>
-              <span class="tag is-primary">{{ formato|upper}}</span>
-            </a>
-            {% endfor %}
-          </td>
-          </tr>
-        </tbody>
-      </table>
-    {% if libro.sinopsis %}
-    <strong> {{ _('Synopsis:') }} </strong>
-    <p style="text-align: justify;">
-    {{ libro.sinopsis|safe}}
-    </p>
-    {% endif %}
+                                <strong> {{ _('Download:') }} </strong>
+                                {% for formato, ruta  in libro.formatos.items() %}
+                                <a href={{url_for('devolver_libro_descarga', ruta=ruta)}}>
+                                    <span class="tag is-primary">{{ formato|upper}}</span>
+                                </a>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                {% if libro.sinopsis %}
+                <strong> {{ _('Synopsis:') }} </strong>
+                <p style="text-align: justify;">
+                    {{ libro.sinopsis|safe}}
+                </p>
+                {% endif %}
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
-{% endblock %}
+    {% endblock %}
