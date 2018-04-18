@@ -13,10 +13,10 @@ Actualmente la unica manera de genrar el catalogo es usando una biblioteca de [C
 Vas a necesitar `pipenv` para correr todo.  Se puede instalar con
 
 ```
-pip install pipenv
+pip install pipenv --user
 ```
 
-Y luego para instalar todas las dependencias:
+Y luego en el directorio de la aplicación instalamos las dependencias:
 
 ```
 pipenv install
