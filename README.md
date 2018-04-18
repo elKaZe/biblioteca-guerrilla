@@ -8,6 +8,26 @@ y embeberlo en un router ( o cualquier dispositivo :D).
 ### ¿ y como funciona esto ?
 Actualmente la unica manera de genrar el catalogo es usando una biblioteca de [Calibre](https://calibre-ebook.com/),
 
+### Instalar
+
+Vas a necesitar `pipenv` para correr todo.  Se puede instalar con
+
+```
+pip install pipenv
+```
+
+Y luego para instalar todas las dependencias:
+
+```
+pipenv install
+```
+
+Antes de generar el sitio, hay que entrar al entorno de trabajo:
+
+```
+pipenv shell
+```
+
 ### Mandale mecha!
 Asegurate que todos los libros tengan la portada generada, eso lo conseguis
 desde calibre, chequea las opciones de **modificar metadatos en masa**
