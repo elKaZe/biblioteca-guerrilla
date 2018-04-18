@@ -39,10 +39,12 @@ CONECTOR_OPCIONES = {
     }
 RUTA_BASE_LIBROS = "ruta/a/la/bibliotecaDeCalibre/"
 ```
-generamos la web estatica *es importante que te muevas al directorio _app_*:
+generamos la web estatica:
+
 ```
 make generate-static-website
 ```
+
 dentro de **/tmp/biblioteca-guerrilla/** tedremos la web.
 
 ### ¿Como iniciar el server de pruebas?
