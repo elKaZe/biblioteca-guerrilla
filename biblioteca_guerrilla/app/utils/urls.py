@@ -2,12 +2,12 @@
 # -*- coding: utf-8 -*-
 # vim:fenc=utf-8
 #
-# Copyright © 2017 Facundo Acevedo <facevedo[AT]openmailbox[DOT]org>
+# Copyright © 2017 Kaze <kaze[AT]rlab[DOT]be>
 #
 # Distributed under terms of the GPLv3+ license.
 
 """
-Funciones para laburar con urls
+Functions to work with urls
 """
 
 import urllib

@@ -7,49 +7,49 @@
 """
 
 """
-from conector.dbprovider import instanciar_conector
+from connector.dbprovider import instance_connector
 from flask import (Flask, redirect, render_template, send_from_directory,
                    url_for)
 from flask_babel import gettext as _
 from flask_babel import Babel
-from settings import RUTA_BASE_LIBROS
-from utils.utils_libro import normalizar_libros
-from utils.utils_url import urldecode, urlencode
+from settings import BASE_BOOK_PATH
+from utils.books import normalize_book
+from utils.urls import urldecode, urlencode
 
 app = Flask('__name__')
 
-# Levantamos la config
+# Set up
 app.config.from_object("settings")
 babel = Babel(app)
 
 
-# Filtros
+# Filters
 
-def obtener_filtros():
-    """Filtros para la barra izquierda"""
-    filtros = (
-        {'url': url_for('vista_todos_los_libros'),
-         'nombre': _("Books"),
+def get_filters():
+    """Filters on the left bar"""
+    filters = (
+        {'url': url_for('all_the_books_view'),
+         'name': _("Books"),
          'iconclass': "fa fa-book"},
-        {'url': url_for('vista_autores'),
-         'nombre': _("Authors"),
+        {'url': url_for('authors_view'),
+         'name': _("Authors"),
          'iconclass': "fa fa-users"},
-        {'url': url_for('vista_etiquetas'),
-         'nombre': _("Categories"),
+        {'url': url_for('tags_view'),
+         'name': _("Categories"),
          'iconclass': "fa fa-list"},
         # {'url': url_for('idiomas'),
-        # 'nombre': _("Langueges"),
+        # 'name': _("Langueges"),
         # 'fa-icon-class': "fa fa-language"},
-        {'url': url_for('vista_series'),
-         'nombre': _("Series"),
+        {'url': url_for('series_view'),
+         'name': _("Series"),
          'iconclass': "fa fa-indent"},
     )
-    return filtros
+    return filters
 
 
-def obtener_datos_administrador():
-    """Obtiene los datos del administrador del archivo de configuración
-    :returns: diccionario
+def get_admin_data():
+    """Get Admin data form config file
+    :returns: dicct
 
     """
     admin_data = {
@@ -59,312 +59,312 @@ def obtener_datos_administrador():
     return admin_data
 
 
-def obtener_estadisticas():
-    """Obtiene la candiad de libros, series, categorias y autores
-    :returns: diccionario
+def get_stats():
+    """
+    Gets stats about the amount of books, series, tags and authors
+    :returns: dicct
 
     """
 
-    stats = {'authors': len(filtrar_por_autor()),
-             'categories': len(obtener_etiquetas_con_url()),
-             'books': len(obtener_todos_los_libros()),
-             'series': len(obtener_series_con_url()),
+    stats = {'authors': len(filter_by_author()),
+             'categories': len(get_tags_with_url()),
+             'books': len(get_books()),
+             'series': len(get_collections_with_url()),
              }
 
     return stats
 
 
-def filtrar_por_autor(autor=""):
-    conector = instanciar_conector()
-    conector.conectar()
-    # obtenemos los libros sin procesar
-    libros = conector.obtener_por_autor(autor)
-    # Normalizamos la lista de libros
-    libros = normalizar_libros(libros, conector)
-    conector.desconectar()
-    return libros
+def filter_by_author(author=""):
+    connector = instance_connector()
+    connector.connect()
+    # get books without processing
+    books = connector.get_by_author(author)
+    # Lets normalize the list f books
+    books = normalize_book(books, connector)
+    connector.desconnect()
+    return books
 
 
-def filtrar_por_etiqueta(etiqueta=""):
-    conector = instanciar_conector()
-    conector.conectar()
-    # obtenemos los libros sin procesar
-    libros = conector.obtener_por_etiqueta(etiqueta)
-    # Normalizamos la lista de libros
-    libros = normalizar_libros(libros, conector)
-    conector.desconectar()
-    return libros
+def filter_by_tag(tag=""):
+    connector = instance_connector()
+    connector.connect()
+    # get books without processing
+    books = connector.get_books_by_tag(tag)
+    # Lets normalize the list f books
+    books = normalize_book(books, connector)
+    connector.desconnect()
+    return books
 
 
-def filtrar_por_serie(serie=""):
-    conector = instanciar_conector()
-    conector.conectar()
+def filter_by_collection(serie=""):
+    connector = instance_connector()
+    connector.connect()
     serie = urldecode(serie)
-    # obtenemos los libros sin procesar
-    libros = conector.obtener_por_serie(serie)
-    # Normalizamos la lista de libros
-    libros = normalizar_libros(libros, conector)
-    conector.desconectar()
-    return libros
+    # get books without processing
+    books = connector.get_books_by_serie(serie)
+    # Lets normalize the list f books
+    books = normalize_book(books, connector)
+    connector.desconnect()
+    return books
 
 
-def filtrar_por_nombre(nombre_libro=""):
-    """Filtra por el nombre del libro"""
-    conector = instanciar_conector()
-    conector.conectar()
-    # obtenemos los libros sin procesar
-    libros = conector.obtener_por_nombre(nombre_libro)
-    # Normalizamos la lista de libros
-    libros = normalizar_libros(libros, conector)
-    conector.desconectar()
-    return libros
+def filter_by_book_name(book_name=""):
+    """Filter by the name of the book"""
+    connector = instance_connector()
+    connector.connect()
+    # get books without processing
+    books = connector.get_book_by_name(book_name)
+    # Lets normalize the list f books
+    books = normalize_book(books, connector)
+    connector.desconnect()
+    return books
 
 
-def obtener_todos_los_libros():
-    """Obtiene todos los libros y los normaliza
-    :returns: lista
+def get_books():
+    """Get all books and normalize them
+    :returns: list
 
     """
-    conector = instanciar_conector()
-    conector.conectar()
-    # obtenemos los libros sin procesar
-    libros = conector.obtener_todos()
-    # Normalizamos la lista de libros
-    libros = normalizar_libros(libros, conector)
-    conector.desconectar()
-    return libros
+    connector = instance_connector()
+    connector.connect()
+    # get books without processing
+    books = connector.get_all()
+    # Lets normalize the list f books
+    books = normalize_book(books, connector)
+    connector.desconnect()
+    return books
 
 
-def obtener_series_con_url():
-    """Devuelve una lista con todos los series"""
+def get_collections_with_url():
+    """Get a list with all the series"""
     series = []
 
-    conector = instanciar_conector()
-    conector.conectar()
-    # obtenemos los series sin procesar
-    series_crudo = conector.obtener_series()
-    for serie in series_crudo:
+    connector = instance_connector()
+    connector.connect()
+    # Get seriers without processing
+    raw_series = connector.obtener_series()
+    for serie in raw_series:
         serie_safe = urlencode(serie)
-        url = url_for('vista_serie_especificada', nombre_serie=serie_safe)
-        series.append({'url': url, 'elemento': serie})
+        url = url_for('collection_view', serie_name=serie_safe)
+        series.append({'url': url, 'element': serie})
 
-    conector.desconectar()
+    connector.desconnect()
     return series
 
 
-def obtener_etiquetas_con_url():
-    """Devuelve una lista con todos los etiquetas"""
-    etiquetas = []
+def get_tags_with_url():
+    """Get a list with all the tags"""
+    tags = []
 
-    conector = instanciar_conector()
-    conector.conectar()
-    # obtenemos los etiquetas sin procesar
-    etiquetas_crudo = conector.obtener_etiquetas()
-    for etiqueta in etiquetas_crudo:
-        etiqueta_safe = urlencode(etiqueta)
+    connector = instance_connector()
+    connector.connect()
+    # Get tags without processing
+    tags_raw = connector.get_tags()
+    for tag in tags_raw:
+        tag_safe = urlencode(tag)
         url = url_for(
-            'vista_etiqueta_especificada',
-            nombre_etiqueta=etiqueta_safe)
-        etiquetas.append({'url': url, 'elemento': etiqueta})
+            'tag_view',
+            tag_name=tag_safe)
+        tags.append({'url': url, 'element': tag})
 
-    conector.desconectar()
-    return etiquetas
+    connector.desconnect()
+    return tags
 
 
-def obtener_autores_con_url():
-    """Devuelve una lista con todos los autores"""
-    autores = []
+def get_authors_with_url():
+    """Get a list with all the authors"""
+    authors = []
 
-    conector = instanciar_conector()
-    conector.conectar()
-    # obtenemos los autores sin procesar
-    autores_crudo = conector.obtener_autores()
-    for autor in autores_crudo:
-        autor_safe = urlencode(autor)
+    connector = instance_connector()
+    connector.connect()
+    # Get authors without processing
+    authors_raw = connector.get_authors()
+    for author in authors_raw:
+        autor_safe = urlencode(author)
         url = url_for(
-            'vista_autor_especificado',
-            nombre_autor=autor_safe)
-        autores.append({'url': url, 'elemento': autor})
+            'author_view',
+            author_name=autor_safe)
+        authors.append({'url': url, 'element': author})
 
-    conector.desconectar()
-    return autores
+    connector.desconnect()
+    return authors
 
 
-def formatear_elementos_para_template(elementos):
-    """Genero un diccionario con clave la primer letra y todos los elementos que
-    comiencen con ella en una lista como item"""
+def format_elements_for_template(elements):
+    """Generate a dict with the first key of the element as key and the element as value"""
 
-    diccionario = {}
-    for elemento in elementos:
-        # Dentro del elemento hay dos items, 'url' y 'elemento'
-        primera_letra = elemento.get('elemento')[0].upper()
-        if diccionario.get(primera_letra, None) is None:
-            diccionario[primera_letra] = []
+    first_letter_dict = {}
+    for element in elements:
+        # Inside element there is two items, 'url' and 'element'
+        first_letter = element.get('element')[0].upper()
+        if first_letter_dict.get(first_letter, None) is None:
+            first_letter_dict[first_letter] = []
 
-        diccionario[primera_letra].append(elemento)
-    return diccionario
+        first_letter_dict[first_letter].append(element)
+    return first_letter_dict
 
-# Vistas
+# Views
 
 
 @app.route('/')
 def index():
     return render_template('index.html',
-                           titulo="",
-                           filtros_generales=obtener_filtros(),
-                           stats=obtener_estadisticas(),
-                           admin=obtener_datos_administrador(),
+                           title="",
+                           general_filters=get_filters(),
+                           stats=get_stats(),
+                           admin=get_admin_data(),
                            )
 
 
-@app.route('/libros/')
-def vista_todos_los_libros():
-    """Muestra los libros"""
-    libros = obtener_todos_los_libros()
+@app.route('/books/')
+def all_the_books_view():
+    """Show the books"""
+    books = get_books()
 
-    return render_template("listado_de_libros.html",
-                           libros=libros,
-                           titulo=_("All books:"),
-                           filtros_generales=obtener_filtros()
+    return render_template("list_of_books.html",
+                           books=books,
+                           title=_("All books:"),
+                           general_filters=get_filters()
                            )
 
 
-@app.route('/autor/<path:nombre_autor>/')
-def vista_autor_especificado(nombre_autor):
-    """Muestra los libros de un autor"""
-    if not nombre_autor:
-        return redirect(url_for('vista_autores'))
+@app.route('/author/<path:author_name>/')
+def author_view(author_name):
+    """Muestra los books de un author"""
+    if not author_name:
+        return redirect(url_for('authors_view'))
 
-    nombre_autor = urldecode(nombre_autor)
-    libros = filtrar_por_autor(nombre_autor)
+    author_name = urldecode(author_name)
+    books = filter_by_author(author_name)
 
-    return render_template("listado_de_libros.html",
-                           libros=libros,
-                           titulo=nombre_autor,
-                           filtros_generales=obtener_filtros()
+    return render_template("list_of_books.html",
+                           books=books,
+                           title=author_name,
+                           general_filters=get_filters()
                            )
 
 
-@app.route('/autor/')
-def redirect_autor():
-    return redirect(url_for('vista_autores'))
+@app.route('/author/')
+def redirect_author():
+    return redirect(url_for('authors_view'))
 
 
-@app.route('/serie/<path:nombre_serie>/')
-def vista_serie_especificada(nombre_serie):
-    """Muestra los libros de una etiquea"""
-    if not nombre_serie:
-        return redirect(url_for('vista_series'))
+@app.route('/serie/<path:serie_name>/')
+def collection_view(serie_name):
+    """Shows books with a particular tag"""
+    if not serie_name:
+        return redirect(url_for('series_view'))
 
-    nombre_serie = urldecode(nombre_serie)
-    libros = filtrar_por_serie(nombre_serie)
+    serie_name = urldecode(serie_name)
+    books = filter_by_collection(serie_name)
 
-    return render_template("listado_de_libros.html",
-                           libros=libros,
-                           titulo=nombre_serie,
-                           filtros_generales=obtener_filtros()
+    return render_template("list_of_books.html",
+                           books=books,
+                           title=serie_name,
+                           general_filters=get_filters()
                            )
 
 
 @app.route('/serie/')
 def redirect_serie():
-    return redirect(url_for('vista_series'))
+    return redirect(url_for('series_view'))
 
 
-@app.route('/etiqueta/<path:nombre_etiqueta>/')
-def vista_etiqueta_especificada(nombre_etiqueta):
-    """Muestra los libros de una etiquea"""
-    if not nombre_etiqueta:
-        return redirect(url_for('vista_etiquetas'))
+@app.route('/tag/<path:tag_name>/')
+def tag_view(tag_name):
+    """Shows books with a particular tag"""
+    if not tag_name:
+        return redirect(url_for('tags_view'))
 
-    nombre_etiqueta = urldecode(nombre_etiqueta)
-    libros = filtrar_por_etiqueta(nombre_etiqueta)
+    tag_name = urldecode(tag_name)
+    books = filter_by_tag(tag_name)
 
-    return render_template("listado_de_libros.html",
-                           libros=libros,
-                           titulo=nombre_etiqueta,
-                           filtros_generales=obtener_filtros(),
+    return render_template("list_of_books.html",
+                           books=books,
+                           title=tag_name,
+                           general_filters=get_filters(),
                            )
 
 
-@app.route('/etiqueta/')
-def redirect_etiqueta():
-    return redirect(url_for('vista_etiquetas'))
+@app.route('/tag/')
+def redirect_tag():
+    return redirect(url_for('tags_view'))
 
 
-@app.route('/libro/<path:nombre_libro>/')
-def vista_libro_especificado(nombre_libro):
-    """Muestra el libro pedido"""
-    nombre_libro = urldecode(nombre_libro)
-    libros = filtrar_por_nombre(nombre_libro)
+@app.route('/book/<path:book_name>/')
+def book_view(book_name):
+    """Shows a particular book"""
+    book_name = urldecode(book_name)
+    books = filter_by_book_name(book_name)
 
-    return render_template("libro.html",
-                           libro=libros[0],
-                           titulo=nombre_libro,
-                           filtros_generales=obtener_filtros()
+    return render_template("book.html",
+                           book=books[0],
+                           title=book_name,
+                           general_filters=get_filters()
                            )
 
 
-@app.route('/libro/')
-def redirect_libro():
+@app.route('/book/')
+def redirect_book():
     return redirect(url_for('index'))
 
 
-@app.route('/autores/')
-def vista_autores():
-    """Lista los autores """
-    autores = obtener_autores_con_url()
-    autores = formatear_elementos_para_template(autores)
+@app.route('/authors/')
+def authors_view():
+    """List of authors """
+    authors = get_authors_with_url()
+    authors = format_elements_for_template(authors)
 
-    return render_template("listado_de_entradas.html",
-                           entradas=autores,
-                           titulo=_("Authors"),
-                           filtros_generales=obtener_filtros(),
-                           path='autor'
+    return render_template("list_of_entries.html",
+                           entries=authors,
+                           title=_("Authors"),
+                           general_filters=get_filters(),
+                           path='author'
                            )
 
 
-@app.route('/etiquetas/')
-def vista_etiquetas():
-    """Lista las etiquetas"""
-    etiquetas = obtener_etiquetas_con_url()
-    etiquetas = formatear_elementos_para_template(etiquetas)
+@app.route('/tags/')
+def tags_view():
+    """List of tags"""
+    tags = get_tags_with_url()
+    tags = format_elements_for_template(tags)
 
-    return render_template("listado_de_entradas.html",
-                           entradas=etiquetas,
-                           titulo=_("Categories"),
-                           filtros_generales=obtener_filtros(),
-                           path='etiquetas'
+    return render_template("list_of_entries.html",
+                           entries=tags,
+                           title=_("Categories"),
+                           general_filters=get_filters(),
+                           path='tags'
                            )
 
 
 @app.route('/series/')
-def vista_series():
-    """Lista las series"""
-    series = obtener_series_con_url()
-    series = formatear_elementos_para_template(series)
+def series_view():
+    """List of series"""
+    series = get_collections_with_url()
+    series = format_elements_for_template(series)
 
-    return render_template("listado_de_entradas.html",
-                           entradas=series,
-                           titulo=_("Series"),
-                           filtros_generales=obtener_filtros(),
+    return render_template("list_of_entries.html",
+                           entries=series,
+                           title=_("Series"),
+                           general_filters=get_filters(),
                            path='series'
                            )
 
 
-@app.route('/tapas/<path:ruta>')
-def devolver_tapa(ruta):
-    ruta_safe = urldecode(ruta)
-    return send_from_directory(RUTA_BASE_LIBROS, ruta_safe)
+@app.route('/covers/<path:path>')
+def get_book_cover(path):
+    safe_path = urldecode(path)
+    return send_from_directory(BASE_BOOK_PATH, safe_path)
 
 
-@app.route('/archivo/<path:ruta>')
-def devolver_libro_descarga(ruta):
-    ruta_safe = urldecode(ruta)
-    return send_from_directory(RUTA_BASE_LIBROS, ruta_safe, as_attachment=True)
+@app.route('/file/<path:path>')
+def get_book_download(path):
+    safe_path = urldecode(path)
+    return send_from_directory(BASE_BOOK_PATH, safe_path, as_attachment=True)
 
 
-# Habilita a usar esta funcion desde los templates
+# Allow to use this function from templates
 @app.context_processor
 def utility_processor():
     return dict(urlencode=urlencode)

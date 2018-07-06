@@ -4,6 +4,7 @@ import threading
 import time
 
 import main
+from flask_babel import gettext as _
 from flask_frozen import Freezer
 
 freezer = Freezer(main.app)
@@ -14,9 +15,9 @@ class ProgressBarLoading(threading.Thread):
     def run(self):
         global stop
         global kill
-        msg = ("\tL a  c o p i a  c o m p a r t e  c u l t u r a!")
+        msg = _("\t S h a r i n g  c u l t u r e !")
 
-        print("[!] Generando la biblioteca")
+        print(_("[!] Generating the library"))
         sys.stdout.flush()
         i = 0
         while stop is not True:
@@ -32,9 +33,11 @@ class ProgressBarLoading(threading.Thread):
             msg_ = ""
 
         if kill:
-            print('\nAlgo Fallo!')
+            print("\n")
+            print(_('Something has failed!'))
         else:
-            print('\nListo!')
+            print("\n")
+            print(_('Done!'))
 
 
 if __name__ == '__main__':
@@ -51,4 +54,4 @@ if __name__ == '__main__':
         kill = True
         stop = True
 
-    print("Generado en: " + main.app.config.get("FREEZER_DESTINATION"))
+    print(_("Savin to: ") + main.app.config.get("FREEZER_DESTINATION"))
