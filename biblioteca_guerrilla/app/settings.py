@@ -15,17 +15,15 @@ ADMIN_NAME = "kaze"
 ADMIN_EMAIL = "kaze@rlab.be"
 
 # Connector
-CONECTOR = "conector.calibre.calibre"
-CONECTOR_OPCIONES = {
-    "ruta": os.path.realpath(PROJECT_PATH+'/app/tests/data/\
-biblioteca_calibre/metadata.db'),
+CONNECTOR = "connector.calibre.calibre"
+CONNECTOR_OPTIONS = {
+    "path": os.path.realpath('/home/facu/Biblioteca de calibre/metadata.db'),
 }
-RUTA_BASE_LIBROS = os.path.realpath(PROJECT_PATH+'/app/tests/data/\
-biblioteca_calibre/')
+BASE_BOOK_PATH = os.path.realpath('/home/facu/Biblioteca de calibre/')
 
 # Frozen-Flask
 FREEZER_DESTINATION = "/tmp/biblioteca-guerrilla/"
 FREEZER_RELATIVE_URLS = False
 
 # Languages
-BABEL_DEFAULT_LOCALE = "en"
+BABEL_DEFAULT_LOCALE = "es"

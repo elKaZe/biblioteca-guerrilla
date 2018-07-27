@@ -37,7 +37,7 @@ msgstr "No definido"
 
 #: app/main.py:254
 msgid "All books:"
-msgstr "Todos los libros:"
+msgstr "Todos los books:"
 
 #: app/templates/footer.html:5
 msgid ""
@@ -62,7 +62,7 @@ msgstr "¡Bienvenidx!"
 msgid "On the left bar you will find the categories organising the books."
 msgstr ""
 "En la barra de la izquierda vas a encontrar categorías que organizan los "
-"libros."
+"books."
 
 #: app/templates/index.html:21
 msgid "This node has:"
@@ -70,7 +70,7 @@ msgstr "Este nodo cuenta con:"
 
 #: app/templates/index.html:60
 msgid "To read the books we recommend the following applications:"
-msgstr "Para leer los libros te recomendamos las siguientes aplicaciones:"
+msgstr "Para leer los books te recomendamos las siguientes aplicaciones:"
 
 #: app/templates/index.html:67
 msgid "System"
@@ -111,32 +111,32 @@ msgid ""
 "E-mail to the author, his address is in the footer."
 msgstr ""
 "Si tenes sugerencias, ideas, quejas, o cualquier otra cosa, podes enviarle "
-"un E-mail al autor, su dirección esta en el pie de pagina."
+"un E-mail al author, su dirección esta en el pie de pagina."
 
-#: app/templates/libro.html:21
+#: app/templates/book.html:21
 msgid "Title"
 msgstr "Titulo"
 
-#: app/templates/libro.html:25
+#: app/templates/book.html:25
 msgid "Labels:"
 msgstr "Etiquetas:"
 
-#: app/templates/libro.html:35
+#: app/templates/book.html:35
 msgid "Author:"
 msgstr "Autor:"
 
-#: app/templates/libro.html:46
+#: app/templates/book.html:46
 msgid "Collection:"
 msgstr "Colección:"
 
-#: app/templates/libro.html:56
+#: app/templates/book.html:56
 msgid "Year of publication:"
 msgstr "Año de publicación:"
 
-#: app/templates/libro.html:59
+#: app/templates/book.html:59
 msgid "Download:"
 msgstr "Descarga:"
 
-#: app/templates/libro.html:70
+#: app/templates/book.html:70
 msgid "Synopsis:"
 msgstr "Sinopsis:"

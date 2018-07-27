@@ -452,7 +452,7 @@
       "datatype": "text",
       "table": null,
       "display": {},
-      "name": "Orden de autor"
+      "name": "Orden de author"
     },
     "cover": {
       "is_category": false,

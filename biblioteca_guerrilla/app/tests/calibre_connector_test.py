@@ -5,95 +5,95 @@
 # Distributed under terms of the GPLv3+ license.
 
 """
-Test para  el conector de calibre
+Test para  el connector de calibre
 
 """
 
 import unittest
 
-from app.conector.calibre import Conector
-from app.dbprovider import ConectorABS
+from app.connector.calibre import Connector
+from app.dbprovider import ConnectorABS
 
 
 class CalibreConnectorTestCase(unittest.TestCase):
 
     def setUp(self):
-        self.con = Conector(
-            **{'ruta': "app/tests/data/biblioteca_calibre/metadata.db"})
-        self.con.conectar()
+        self.con = Connector(
+            **{'path': "app/tests/data/biblioteca_calibre/metadata.db"})
+        self.con.connect()
 
     def tearDown(self):
-        self.con.desconectar()
+        self.con.desconnect()
 
     def test_instancia(self):
         """verifica que extienda y sea instancia de dbprovider"""
         self.assertTrue(
-            issubclass(Conector, ConectorABS)
+            issubclass(Connector, ConnectorABS)
         )
         self.assertTrue(
             isinstance(
-                Conector(
+                Connector(
                     **
-                    {'ruta': "app/tests/data/biblioteca_calibre/metadata.db"}),
-                ConectorABS))
+                    {'path': "app/tests/data/biblioteca_calibre/metadata.db"}),
+                ConnectorABS))
 
-        # Verificamos el error al pasarle una ruta invalida
+        # Verificamos el error al pasarle una path invalida
         with self.assertRaises(FileNotFoundError):
-            Conector(**{'ruta': ""})
+            Connector(**{'path': ""})
 
-    def test_obtener_autores(self):
-        """Testeamos la obtencion de autores"""
+    def test_get_authors(self):
+        """Testeamos la obtencion de authors"""
         # tenemos tres
-        autores = self.con.obtener_autores()
-        self.assertEqual(len(autores), 3)
+        authors = self.con.get_authors()
+        self.assertEqual(len(authors), 3)
 
-    def test_obtener_todos(self):
+    def test_get_all(self):
         """Testeamos la obtencion todo"""
         # tenemos tres
-        libros = self.con.obtener_todos()
-        self.assertEqual(len(libros), 3)
+        books = self.con.get_all()
+        self.assertEqual(len(books), 3)
 
         # cantidad de atributos
-        for l in libros:
+        for l in books:
             self.assertEqual(len(l), 4)
 
-    def test_obtener_por_autor(self):
-        """Traemos todos los libros por cada autor"""
+    def test_get_by_author(self):
+        """Traemos todos los books por cada author"""
 
-        autores = self.con.obtener_autores()
-        for a in autores:
-            libros = self.con.obtener_por_autor(a)
-            self.assertNotEqual(len(libros), 0)
+        authors = self.con.get_authors()
+        for a in authors:
+            books = self.con.get_by_author(a)
+            self.assertNotEqual(len(books), 0)
 
-    def test_obtener_etiquetas(self):
-        """Testeamos la obtencion de etiquetas"""
-        etiquetas = self.con.obtener_etiquetas()
-        self.assertEqual(len(etiquetas), 5)
+    def test_get_tags(self):
+        """Testeamos la obtencion de tags"""
+        tags = self.con.get_tags()
+        self.assertEqual(len(tags), 5)
 
-    def test_obtener_por_etiquetas(self):
-        """Traemos todos los libros por cada etiqueta"""
+    def test_get_books_by_tags(self):
+        """Traemos todos los books por cada tag"""
 
-        etiquetas = self.con.obtener_etiquetas()
-        for e in etiquetas:
-            libros = self.con.obtener_por_etiqueta(e)
-            self.assertNotEqual(len(libros), 0)
+        tags = self.con.get_tags()
+        for e in tags:
+            books = self.con.get_books_by_tag(e)
+            self.assertNotEqual(len(books), 0)
 
         # Etiqueta inexistente
-        libros = self.con.obtener_por_etiqueta("asddwjijijij")
-        self.assertEqual(len(libros), 0)
+        books = self.con.get_books_by_tag("asddwjijijij")
+        self.assertEqual(len(books), 0)
 
-    def test_obtener_formatos(self):
-        """Traemos los formatos de un libro"""
+    def test_get_formats(self):
+        """Traemos los format de un book"""
 
-        libros = self.con.obtener_todos()
+        books = self.con.get_all()
 
-        for l in libros:
-            formatos = self.con.obtener_formatos(l.get("id"))
-            self.assertNotEqual(len(formatos), 0)
+        for l in books:
+            format = self.con.get_formats(l.get("id"))
+            self.assertNotEqual(len(format), 0)
 
-        # Sin formatos
-        formatos = self.con.obtener_formatos("8798798798798")
-        self.assertEqual(len(formatos), 0)
+        # Sin format
+        format = self.con.get_formats("8798798798798")
+        self.assertEqual(len(format), 0)
 
 
 if __name__ == '__main__':

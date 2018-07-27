@@ -1,0 +1,31 @@
+{% extends "central.html" %}
+{% block listado %}
+
+{% macro genera_item_book(title, author, ruta_cover) %}
+<a class="file" href={{ url_for('book_view', book_name=urlencode(title) ) }} >
+    <div class="image is-4by2">
+        <img src={{ url_for('get_book_cover', path=ruta_cover) }} alt="{{ _('Book cover') }}">
+    </div>
+    <div class="name do-not-break">{{ title }}</div>
+    <div class="timestamp">{{ author }}</div>
+</a>
+{% endmacro %}
+{% macro genera_columnas(books) %}
+{% for book in books %}
+<div class="column is-2">
+    {{ genera_item_book(book.title, book.author, book.cover) }}
+</div>
+{% endfor %}
+
+{% endmacro %}
+<div class="columns">
+    {% include "sidebar.html" %}
+    <div class="content column is-10">
+        <div class="title">{{ title|capitalize }}</div>
+        <div class="columns is-multiline files">
+            {{ genera_columnas(books) }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

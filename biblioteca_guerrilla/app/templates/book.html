@@ -1,0 +1,79 @@
+
+{% extends "central.html" %}
+{% block content%}
+
+
+<div class="columns">
+    {% include "sidebar.html" %}
+    <div class="content column is-10">
+        <div class="title is-2">{{ title }}</div>
+        <div class="columns" style="margin-top: 0.75rem;">
+            <div class="column is-one-third">
+                <div class="image is-420x640">
+                    <img src={{ url_for('get_book_cover', path=book.cover) }} alt="{{ _('Book cover') }}">
+                </div>
+            </div>
+
+            <div class="column">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td><strong> {{ _('Title') }}: </strong>{{ book.title|capitalize }}</td>
+                            <td>
+
+                                {% if book.tags%}
+                                <strong> {{ _('Labels:') }} </strong>
+                                {% for tag  in book.tags %}
+                                <a href={{ url_for('tag_view', tag_name=tag) }} >
+                                    <span class="tag is-danger">{{ tag|capitalize }}</span>
+                                </a>
+                                {% endfor %}
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong> {{ _('Author:') }} </strong>
+                                {% for author in book.authors %}
+                                <a href={{ url_for('author_view', author_name=author ) }} >
+                                    {{ author}}
+                                </a>
+                                {% endfor %}
+
+                            </td>
+                            <td>
+
+                                {% if book.series%}
+                                <strong> {{ _('Collection:') }} </strong>
+                                {% for serie in book.series%}
+                                <a href={{ url_for('collection_view', serie_name=serie) }} >
+                                    <span class="tag is-warning">{{ serie|capitalize }}</span>
+                                </a>
+                                {% endfor %}
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong> {{ _('Year of publication:') }} </strong>{{ book.publication_date}}</td>
+                            <td>
+
+                                <strong> {{ _('Download:') }} </strong>
+                                {% for formato, path  in book.format.items() %}
+                                <a href={{url_for('get_book_download', path=path)}}>
+                                    <span class="tag is-primary">{{ formato|upper}}</span>
+                                </a>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                {% if book.sinopsis %}
+                <strong> {{ _('Synopsis:') }} </strong>
+                <p style="text-align: justify;">
+                    {{ book.sinopsis|safe}}
+                </p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}
