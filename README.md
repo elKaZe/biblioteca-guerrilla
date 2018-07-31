@@ -60,7 +60,7 @@ Ingresamos a http://localhost:5000/ para ver el sitio
 - Si encontras errores levantá un issue.
 - ¡Los parches son más que bienvenidos!
 - Si queres traducir entra
-[acá](https://translate.zanata.org/project/view/biblioteca-guerrilla)
+[acá](https://www.transifex.com/biblioteca-guerrilla/biblioteca-guerrilla)
 
 ### ¿ Que licencia tiene ?
 GPLv3+, chequea el archivo [LICENCE](LICENCE)
