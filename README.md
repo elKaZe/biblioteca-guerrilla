@@ -8,6 +8,26 @@ y embeberlo en un router ( o cualquier dispositivo :D).
 ### ¿ y como funciona esto ?
 Actualmente la unica manera de genrar el catalogo es usando una biblioteca de [Calibre](https://calibre-ebook.com/),
 
+### Instalar
+
+Vas a necesitar `pipenv` para correr todo.  Se puede instalar con
+
+```
+pip install pipenv --user
+```
+
+Y luego en el directorio de la aplicación instalamos las dependencias:
+
+```
+pipenv install
+```
+
+Antes de generar el sitio, hay que entrar al entorno de trabajo:
+
+```
+pipenv shell
+```
+
 ### Mandale mecha!
 Asegurate que todos los libros tengan la portada generada, eso lo conseguis
 desde calibre, chequea las opciones de **modificar metadatos en masa**
@@ -19,10 +39,12 @@ CONECTOR_OPCIONES = {
     }
 RUTA_BASE_LIBROS = "ruta/a/la/bibliotecaDeCalibre/"
 ```
-generamos la web estatica *es importante que te muevas al directorio _app_*:
+generamos la web estatica:
+
 ```
 make generate-static-website
 ```
+
 dentro de **/tmp/biblioteca-guerrilla/** tedremos la web.
 
 ### ¿Como iniciar el server de pruebas?
