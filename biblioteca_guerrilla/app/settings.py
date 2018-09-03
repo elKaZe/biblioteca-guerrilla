@@ -9,7 +9,8 @@ import os
 
 PROJECT_PATH = os.path.split(os.path.dirname(os.path.realpath(__file__)))[0]
 
-
+# Flask DEBUG
+DEBUG = True
 # Admin data
 ADMIN_NAME = "kaze"
 ADMIN_EMAIL = "kaze@rlab.be"

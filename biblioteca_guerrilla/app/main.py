@@ -5,7 +5,7 @@
 # Distributed under terms of the GPLv3+ license.
 
 """
-
+Main module
 """
 from connector.dbprovider import instance_connector
 from flask import (Flask, redirect, render_template, send_from_directory,
