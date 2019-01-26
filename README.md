@@ -2,11 +2,11 @@ Biblioteca Guerrilla
 ========
 
 ### ¿ Que es ?
-Biblioteca Guerrilla es una aplicacion para generar un catalogo web de libros
+Biblioteca Guerrilla es una aplicación para generar un catalogo web de libros
 y embeberlo en un router ( o cualquier dispositivo :D).
 
 ### ¿ y como funciona esto ?
-Actualmente la unica manera de genrar el catalogo es usando una biblioteca de [Calibre](https://calibre-ebook.com/),
+Actualmente la unica manera de generar el catalogo es usando una biblioteca de [Calibre](https://calibre-ebook.com/),
 
 ### Instalar
 
