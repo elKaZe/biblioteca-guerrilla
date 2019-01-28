@@ -16,10 +16,10 @@ class Connector(ConnectorABS):
 
     def __init__(self, **kwargs):
         # path to db
-        self.db = kwargs.get('path', '')
         logging.basicConfig(level=logging.INFO)
         self.logger = logging.getLogger(__name__)
 
+        self.db = os.path.join(kwargs.get('path', ''), "metadata.db")
         if not os.path.isfile(self.db):
             self.logger.critical(_("Database not found."))
             raise FileNotFoundError(_("Database not found."))
