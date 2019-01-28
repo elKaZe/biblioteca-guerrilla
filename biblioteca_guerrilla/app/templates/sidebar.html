@@ -1,8 +1,8 @@
 <aside class="column is-2 aside hero is-fullheight is-desktop is-hidden-mobile">
     <div>
         <div class="main">
-            {% for filtro in general_filters %}
-            <a href="{{ filtro.url }}" class="item"><span class="icon"><i class="{{filtro.iconclass}}"></i></span><span class="name">{{ filtro.name|capitalize }}</span></a>
+            {% for filter in general_filters %}
+            <a href="{{ filter.url }}" class="item"><span class="icon"><i class="{{filter.iconclass}}"></i></span><span class="name">{{ filter.name|capitalize }}</span></a>
             {% endfor %}
         </div>
     </div>
@@ -10,8 +10,8 @@
 <aside class="column aside hero is-mobile is-hidden-desktop is-hidden-tablet">
     <div>
         <div class="main">
-            {% for filtro in general_filters %}
-            <a href="{{ filtro.url }}" class="item"><span class="icon"><i class="{{filtro.iconclass}}"></i></span><span class="name">{{ filtro.name|capitalize }}</span></a>
+            {% for filter in general_filters %}
+            <a href="{{ filter.url }}" class="item"><span class="icon"><i class="{{filter.iconclass}}"></i></span><span class="name">{{ filter.name|capitalize }}</span></a>
             {% endfor %}
         </div>
     </div>
