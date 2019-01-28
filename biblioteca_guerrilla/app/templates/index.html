@@ -11,8 +11,11 @@
                     <div class="message-header">
                         <p>{{ _('Welcome!') }}</p>
                     </div>
-                    <div class="message-body">
+                    <div class="message-body is-desktop is-hidden-mobile">
                         {{ _("""On the left bar you will find the categories organising the books.""") }}
+                    </div>
+                    <div class="message-body is-hidden-desktop is--mobile">
+                        {{ _("""On the upper bar you will find the categories organising the books.""") }}
                     </div>
                 </article>
 
