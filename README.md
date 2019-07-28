@@ -1,14 +1,13 @@
-Biblioteca Guerrilla
-========
+## Biblioteca Guerrilla
 
-### ¿ Que es ?
+### ¿Qué es?
 Biblioteca Guerrilla es una aplicación para generar un catalogo web de libros
-y embeberlo en un router ( o cualquier dispositivo :D).
+y embeberlo en un router (o cualquier dispositivo :D).
 
-### ¿ y como funciona esto ?
+### ¿Y cómo funciona esto?
 Actualmente la unica manera de generar el catalogo es usando una biblioteca de [Calibre](https://calibre-ebook.com/),
 
-### Instalar
+### Instalación
 
 Vas a necesitar `pipenv` para correr todo.  Se puede instalar con
 
@@ -28,7 +27,7 @@ Antes de generar el sitio, hay que entrar al entorno de trabajo:
 pipenv shell
 ```
 
-### Mandale mecha!
+### ¡Mandale mecha!
 Asegurate que todos los libros tengan la portada generada, eso lo conseguis
 desde calibre, chequea las opciones de **modificar metadatos en masa**
 
@@ -47,7 +46,7 @@ make generate-static-website
 
 dentro de **/tmp/biblioteca-guerrilla/** tedremos la web.
 
-### ¿Como iniciar el server de pruebas?
+### ¿Cómo iniciar el server de pruebas?
 
 Ejecutamos el siguiente comando
 ```
@@ -56,18 +55,17 @@ make start-test-server
 
 Ingresamos a http://localhost:5000/ para ver el sitio
 
-### ¡ Quiero colabrar !
+### ¡Quiero colabrar!
 - Si encontras errores levantá un issue.
 - ¡Los parches son más que bienvenidos!
 - Si queres traducir entra
 [acá](https://www.transifex.com/biblioteca-guerrilla/biblioteca-guerrilla)
 
-### ¿ Que licencia tiene ?
+### ¿Qué licencia tiene?
 GPLv3+, chequea el archivo [LICENCE](LICENCE)
 
 ---------------------------
 
-Inspirado en [Letras viajeras](https://github.com/gcoop-libre/letras_viajeras/)
-de la cooperativa [GCOOP](https://www.gcoop.coop/)
+Inspirado en [Letras viajeras](https://github.com/gcoop-libre/letras_viajeras/) de la cooperativa [GCOOP](https://www.gcoop.coop/)
 
 Tema basado en [aside](https://github.com/dansup/bulma-templates/blob/gh-pages/css/aside.css) de [dansup](https://github.com/dansup) con licencia MIT
