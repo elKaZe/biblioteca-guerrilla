@@ -26,7 +26,7 @@ py==1.5.4
 pycodestyle==2.0.0
 pydocstyle==2.1.1
 pyflakes==1.2.3
-pygments==2.2.0
+pygments==2.7.4
 pylint-common==0.2.5
 pylint-plugin-utils==0.4
 pylint==2.0.1
