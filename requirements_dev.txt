@@ -22,7 +22,7 @@ pathtools==0.1.2
 pep8-naming==0.7.0
 pluggy==0.3.1
 prospector==1.0
-py==1.5.4
+py==1.10.0
 pycodestyle==2.0.0
 pydocstyle==2.1.1
 pyflakes==1.2.3
